@@ -10,5 +10,9 @@ namespace DejasList.Models
     {
         [Key]
         public int JobsId { get; set; }
+        public string TypeOfProject { get; set; }
+        public string SizeOfProject { get; set; }
+        public double Budget { get; set; }
+
     }
 }
