@@ -34,5 +34,7 @@ namespace DejasList.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<DejasList.Models.ApplicationUser> ApplicationUsers { get; set; }
     }
 }
