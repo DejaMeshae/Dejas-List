@@ -180,6 +180,7 @@
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -190,6 +191,14 @@
     <Compile Include="Migrations\201905131835093_CreatedJobsTable.cs" />
     <Compile Include="Migrations\201905131835093_CreatedJobsTable.Designer.cs">
       <DependentUpon>201905131835093_CreatedJobsTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905131902019_CreatedContractorsTable.cs" />
+    <Compile Include="Migrations\201905131902019_CreatedContractorsTable.Designer.cs">
+      <DependentUpon>201905131902019_CreatedContractorsTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905132050519_RemovedUserNameForAdmin.cs" />
+    <Compile Include="Migrations\201905132050519_RemovedUserNameForAdmin.Designer.cs">
+      <DependentUpon>201905132050519_RemovedUserNameForAdmin.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -257,6 +266,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -281,6 +291,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905131835093_CreatedJobsTable.resx">
       <DependentUpon>201905131835093_CreatedJobsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905131902019_CreatedContractorsTable.resx">
+      <DependentUpon>201905131902019_CreatedContractorsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905132050519_RemovedUserNameForAdmin.resx">
+      <DependentUpon>201905132050519_RemovedUserNameForAdmin.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

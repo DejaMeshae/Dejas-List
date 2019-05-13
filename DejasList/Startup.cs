@@ -18,20 +18,21 @@ namespace DejasList
         private void createRolesandUsers()
         {
             ApplicationDbContext context = new ApplicationDbContext();
+
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
             var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
 
             //Creating first Admin Role and creating a default Admin User
             if (!roleManager.RoleExists("Admin"))
             {
-                //create Admin roll
+                //create Admin role
                 var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
                 role.Name = "Admin";
                 roleManager.Create(role);
 
                 //Admin who will maintain the website
                 var user = new ApplicationUser();
-                user.UserName = "Jane"; //might change this later as the email should be the username
+                //user.UserName = "Jane";  //not using username, email address is the username
                 user.Email = "janedoe@gmail.com";
 
                 string userPWD = "Jane@123";

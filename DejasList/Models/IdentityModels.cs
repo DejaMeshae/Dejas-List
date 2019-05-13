@@ -21,6 +21,9 @@ namespace DejasList.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<Client> Clients { get; set; }
+        public DbSet<Jobs> Jobs { get; set; }
+        public DbSet<Contractor> Contractors { get; set; }
+
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
