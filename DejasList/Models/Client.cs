@@ -17,6 +17,5 @@ namespace DejasList.Models
         public string Zipcode { get; set; }
         public string Email { get; set; }
 
-        //key
     }
 }
