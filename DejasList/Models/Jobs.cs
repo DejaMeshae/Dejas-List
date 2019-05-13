@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
-using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DejasList.Models
 {
@@ -16,11 +16,11 @@ namespace DejasList.Models
         public double Budget { get; set; }
 
         [ForeignKey("Client")]
-        public string ClientId { get; set; }
+        public int ClientId { get; set; }
         public Client Client { get; set; }
 
         [ForeignKey("Contractor")]
-        public string ContractorId { get; set; }
+        public int ContractorId { get; set; }
         public Contractor Contractor { get; set; }
 
     }

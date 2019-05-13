@@ -186,6 +186,10 @@
     <Compile Include="Migrations\201905131902019_CreatedContractorsTable.Designer.cs">
       <DependentUpon>201905131902019_CreatedContractorsTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905132050519_RemovedUserNameForAdmin.cs" />
+    <Compile Include="Migrations\201905132050519_RemovedUserNameForAdmin.Designer.cs">
+      <DependentUpon>201905132050519_RemovedUserNameForAdmin.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Client.cs" />
@@ -279,6 +283,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905131902019_CreatedContractorsTable.resx">
       <DependentUpon>201905131902019_CreatedContractorsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905132050519_RemovedUserNameForAdmin.resx">
+      <DependentUpon>201905132050519_RemovedUserNameForAdmin.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
