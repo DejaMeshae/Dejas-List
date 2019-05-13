@@ -17,6 +17,8 @@ namespace DejasList.Models
         public string Zipcode { get; set; }
         public string Email { get; set; }
 
-        //key
+        [ForeignKey("ApplicationUser")]
+        public string ApplicationUserId { get; set; }
+        public ApplicationUser ApplicationUser { get; set; }
     }
 }

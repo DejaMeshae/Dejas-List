@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations;
 
 namespace DejasList.Models
 {
@@ -16,5 +17,9 @@ namespace DejasList.Models
         public string Zipcode { get; set; }
         public string State { get; set; }
         public string  Email {get;set;}
+
+        [ForeignKey("ApplicationUser")]
+        public string ApplicationUserId { get; set; }
+        public ApplicationUser ApplicationUser { get; set; }
     }
 }
