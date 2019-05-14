@@ -42,6 +42,7 @@ namespace DejasList.Controllers
         //GET:/Create
         public ActionResult Create()
         {
+
             ViewBag.UserId = new SelectList(db.Users, "UserId", "UserName");
             return View();
         }

@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using DejasList.Models;
+using Microsoft.AspNet.Identity;
 
 namespace DejasList.Controllers
 {
@@ -17,7 +18,9 @@ namespace DejasList.Controllers
         // GET: Contractors
         public ActionResult Index()
         {
-            var contractors = db.Contractors.Include(c => c.ApplicationUser);
+            var ContractorLoggedIn = User.Identity.GetUserId();
+            var contractors = db.Clients.Include(e => e.ApplicationUserId == ContractorLoggedIn);
+            //var contractors = db.Contractors.Include(c => c.ApplicationUser);
             return View(contractors.ToList());
         }
 
@@ -39,6 +42,7 @@ namespace DejasList.Controllers
         // GET: Contractors/Create
         public ActionResult Create()
         {
+
             ViewBag.ApplicationUserId = new SelectList(db.Users, "Id", "Email");
             return View();
         }
