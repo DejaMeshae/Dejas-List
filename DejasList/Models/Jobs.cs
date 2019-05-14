@@ -3,10 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
-<<<<<<< HEAD
-using System.ComponentModel.DataAnnotations;
-=======
->>>>>>> 77ea5c61c6e20e5adb6cb63477ac6b71b028fc8b
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DejasList.Models
