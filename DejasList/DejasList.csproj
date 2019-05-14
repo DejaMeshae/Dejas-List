@@ -189,6 +189,10 @@
     <Compile Include="Migrations\201905141448379_FirstMigration.Designer.cs">
       <DependentUpon>201905141448379_FirstMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905141645586_AddedStates.cs" />
+    <Compile Include="Migrations\201905141645586_AddedStates.Designer.cs">
+      <DependentUpon>201905141645586_AddedStates.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Client.cs" />
@@ -261,10 +265,14 @@
     <Content Include="Views\Contractors\Details.cshtml" />
     <Content Include="Views\Contractors\Edit.cshtml" />
     <Content Include="Views\Contractors\Index.cshtml" />
+    <Content Include="Views\Client\Create.cshtml" />
+    <Content Include="Views\Client\Delete.cshtml" />
+    <Content Include="Views\Client\Details.cshtml" />
+    <Content Include="Views\Client\Edit.cshtml" />
+    <Content Include="Views\Client\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Client\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -282,6 +290,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201905141448379_FirstMigration.resx">
       <DependentUpon>201905141448379_FirstMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905141645586_AddedStates.resx">
+      <DependentUpon>201905141645586_AddedStates.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
