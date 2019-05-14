@@ -42,7 +42,7 @@ namespace DejasList.Controllers
         // GET: Contractors/Create
         public ActionResult Create()
         {
-            // ViewBag.ApplicationUserId = new SelectList(db.Users, "Id", "Email");
+
             ViewBag.ApplicationUserId = new SelectList(db.Users, "Id", "Email");
             return View();
         }
@@ -61,7 +61,7 @@ namespace DejasList.Controllers
                 return RedirectToAction("Index");
             }
 
-            // ViewBag.ApplicationUserId = new SelectList(db.ApplicationUsers, "Id", "Email", contractor.ApplicationUserId); //Will likley not need this line of code delete in the end *DA
+            ViewBag.ApplicationUserId = new SelectList(db.Users, "Id", "Email", contractor.ApplicationUserId); //Will likley not need this line of code delete in the end *DA
             return View(contractor);
         }
 
@@ -77,7 +77,7 @@ namespace DejasList.Controllers
             {
                 return HttpNotFound();
             }
-            //ViewBag.ApplicationUserId = new SelectList(db.ApplicationUsers, "Id", "Email", contractor.ApplicationUserId);//Will likley not need this line of code delete in the end *DA
+            ViewBag.ApplicationUserId = new SelectList(db.Users, "Id", "Email", contractor.ApplicationUserId);//Will likley not need this line of code delete in the end *DA
             return View(contractor);
         }
 
@@ -94,7 +94,7 @@ namespace DejasList.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            //ViewBag.ApplicationUserId = new SelectList(db.ApplicationUsers, "Id", "Email", contractor.ApplicationUserId);//Will likley not need this line of code delete in the end *DA
+            ViewBag.ApplicationUserId = new SelectList(db.Users, "Id", "Email", contractor.ApplicationUserId);//Will likley not need this line of code delete in the end *DA
             return View(contractor);
         }
 
