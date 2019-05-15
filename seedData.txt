@@ -1,0 +1,11 @@
+context.Movies.AddOrUpdate(
+	new Models.Job { Type = "Remodel", Budget = "9000", Size = "Large"},
+	new Models.Job { Type = "Remodel", Budget = "7350", Size = "Large"},
+	new Models.Job { Type = "Remodel", Budget = "6000", Size = "Large"},
+	new Models.Job { Type = "Repair", Budget = "300", Size = "Small"},
+	new Models.Job { Type = "Repair", Budget = "250", Size = "Small"},
+	new Models.Job { Type = "Repair", Budget = "175", Size = "Small"},
+	new Models.Job { Type = "Installation", Budget = "1800", Size = "Medium"},
+	new Models.Job { Type = "Installation", Budget = "1500", Size = "Medium"},
+	new Models.Job { Type = "Installation", Budget = "1300", Size = "Medium"}
+);

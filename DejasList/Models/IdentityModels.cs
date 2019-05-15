@@ -35,5 +35,8 @@ namespace DejasList.Models
             return new ApplicationDbContext();
         }
 
+
+        //Will likley not need this line of code delete in the end *DA
+        //public DbSet<DejasList.Models.ApplicationUser> ApplicationUsers { get; set; }
     }
 }

@@ -1,126 +1,125 @@
-﻿using DejasList.Models;
-using Microsoft.AspNet.Identity;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using DejasList.Models;
 
 namespace DejasList.Controllers
 {
-    public class ClientController : Controller
+    public class JobsController : Controller
     {
-        ///string currentlyLoggedInUserId = User.Identity.GetUserId();
-
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: 
+        // GET: Jobs
         public ActionResult Index()
         {
-            var ClientLoggedIn = User.Identity.GetUserId();
-            var clients = db.Clients.Include(e => e.ApplicationUserId == ClientLoggedIn);
-            return View(clients);
+            var jobs = db.Jobs.Include(j => j.Client).Include(j => j.Contractor);
+            return View(jobs.ToList());
         }
 
-        // GET:/Details/5
+        // GET: Jobs/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Client clients = db.Clients.Find(id);
-            if (clients == null)
+            Jobs jobs = db.Jobs.Find(id);
+            if (jobs == null)
             {
                 return HttpNotFound();
             }
-            return View(clients);
+            return View(jobs);
         }
 
-        //GET:/Create
+        // GET: Jobs/Create
         public ActionResult Create()
         {
-
-            ViewBag.UserId = new SelectList(db.Users, "UserId", "UserName");
+            ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "FirstName");
+            ViewBag.ContractorId = new SelectList(db.Contractors, "ContractorId", "FirstName");
             return View();
         }
 
-        // POST:/Create
+        // POST: Jobs/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ClientId,FirstName,LastName,Address,City,State,ZipCode,Email")] Client client)
+        public ActionResult Create([Bind(Include = "JobsId,TypeOfProject,SizeOfProject,Budget,ClientId,ContractorId")] Jobs jobs)
         {
             if (ModelState.IsValid)
             {
-                client.ApplicationUserId = User.Identity.GetUserId();
-                db.Clients.Add(client);
+                db.Jobs.Add(jobs);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.UserId = new SelectList(db.Users, "UserId", "UserName", client.ApplicationUserId);
-            return View(client);
+            ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "FirstName", jobs.ClientId);
+            ViewBag.ContractorId = new SelectList(db.Contractors, "ContractorId", "FirstName", jobs.ContractorId);
+            return View(jobs);
         }
 
-        // GET:Edit/5
+        // GET: Jobs/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Client clients= db.Clients.Find(id);
-            if (clients == null)
+            Jobs jobs = db.Jobs.Find(id);
+            if (jobs == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.UserId = new SelectList(db.Users, "UserId", "UserName", clients.ApplicationUserId);
-            return View(clients);
+            ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "FirstName", jobs.ClientId);
+            ViewBag.ContractorId = new SelectList(db.Contractors, "ContractorId", "FirstName", jobs.ContractorId);
+            return View(jobs);
         }
 
-        // POST:Edit/5
+        // POST: Jobs/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ClientId,FirstName,LastName,Address,City,State,ZipCode,Email")] Client client)
+        public ActionResult Edit([Bind(Include = "JobsId,TypeOfProject,SizeOfProject,Budget,ClientId,ContractorId")] Jobs jobs)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(client).State = EntityState.Modified;
+                db.Entry(jobs).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.UserId = new SelectList(db.Users, "UserId", "UserName", client.ApplicationUserId);
-            return View(client);
+            ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "FirstName", jobs.ClientId);
+            ViewBag.ContractorId = new SelectList(db.Contractors, "ContractorId", "FirstName", jobs.ContractorId);
+            return View(jobs);
         }
 
-        // GET: Delete/5
+        // GET: Jobs/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Client client = db.Clients.Find(id);
-            if (client == null)
+            Jobs jobs = db.Jobs.Find(id);
+            if (jobs == null)
             {
                 return HttpNotFound();
             }
-            return View(client);
+            return View(jobs);
         }
 
-        // POST:Delete/5
+        // POST: Jobs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Client client = db.Clients.Find(id);
-            db.Clients.Remove(client);
+            Jobs jobs = db.Jobs.Find(id);
+            db.Jobs.Remove(jobs);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
