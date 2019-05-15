@@ -3,7 +3,7 @@ namespace DejasList.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class AddedStates : DbMigration
+    public partial class AddedStatesInClientView : DbMigration
     {
         public override void Up()
         {

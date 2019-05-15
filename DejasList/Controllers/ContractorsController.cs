@@ -19,8 +19,8 @@ namespace DejasList.Controllers
         public ActionResult Index()
         {
             var ContractorLoggedIn = User.Identity.GetUserId();
-            var contractors = db.Clients.Include(e => e.ApplicationUserId == ContractorLoggedIn);
-            //var contractors = db.Contractors.Include(c => c.ApplicationUser);
+            //var contractors = db.Clients.Include(e => e.ApplicationUserId == ContractorLoggedIn);
+            var contractors = db.Contractors.Include(c => c.ApplicationUser);
             return View(contractors.ToList());
         }
 
@@ -56,6 +56,7 @@ namespace DejasList.Controllers
         {
             if (ModelState.IsValid)
             {
+                //Google location here 
                 db.Contractors.Add(contractor);
                 db.SaveChanges();
                 return RedirectToAction("Index");

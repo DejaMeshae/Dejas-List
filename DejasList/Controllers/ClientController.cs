@@ -20,7 +20,8 @@ namespace DejasList.Controllers
         public ActionResult Index()
         {
             var ClientLoggedIn = User.Identity.GetUserId();
-            var clients = db.Clients.Include(e => e.ApplicationUserId == ClientLoggedIn);
+            //var clients = db.Clients.Include(e => e.ApplicationUserId == ClientLoggedIn);
+            var clients = db.Clients.Include(c => c.ApplicationUser);
             return View(clients);
         }
 
@@ -56,6 +57,9 @@ namespace DejasList.Controllers
         {
             if (ModelState.IsValid)
             {
+                //Work on this to cal to get the lat and ln when a user creates their account //
+                //string address = newCustomer.Adress
+                // GeoCode
                 client.ApplicationUserId = User.Identity.GetUserId();
                 db.Clients.Add(client);
                 db.SaveChanges();

@@ -1,0 +1,197 @@
+﻿<!--put the map in the index cshtml file so it will be on the home page of either client or constructor-->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title> <!--title of the page in the home tab-->
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+        /*set the height and width of the map*/
+        #map {
+            width: 50%;
+            height: 60%;
+            margin: 0px auto;
+            display: inline-block
+        }
+
+        html, body {
+            font-size: 10px;
+            height: 100%;
+            margin: 0;
+            padding: 10px;
+        }
+        /*Search input box above map*/
+        #search {
+            width: 607px;
+            font-size: 14pt;
+        }
+            /*When user start typing into search box*/
+            #search:focus {
+                border-color: #4d90fe;
+            }
+        /*driving and transit distance box*/
+        .controls {
+            margin-top: 10px;
+            border: 1px solid transparent;
+            height: 32px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+            width: 598px;
+        }
+        /*driving and transit distance box*/
+        #mode-selector {
+            color: #fff;
+            background-color: #4d90fe;
+            margin-left: 12px;
+        }
+            /*driving and transit distance box*/
+            #mode-selector label {
+                font-family: Roboto;
+                font-size: 13px;
+                font-weight: 300;
+            }
+    </style>
+
+    <!-- Stylesheets. -->
+    <script src="Scripts/jquery-3.3.1.js"></script>
+    <!--<link rel="stylesheet" href="index.css">--> <!--refernce to css file but might delete as im not using it-->
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <h1>Random text random text random text</h1>
+            </div>
+        </div>
+    </div>
+    <!--search bar above map-->
+    <div class="row mb-2">
+        <div class="col">
+            <input class="form-control" id="search" type="text" placeholder="eg: plumbing, roofing, repair" />
+        </div>
+        <div id="mode-selector" class="controls">
+            <input type="radio" name="type" id="changemode-driving">
+            <label for="changemode-driving">Driving</label>
+
+            <input type="radio" name="type" id="changemode-transit">
+            <label for="changemode-transit">Transit</label>
+        </div><br />
+    </div>
+
+    <!--This can go inside the view when completed. Refer to Trash collector layout cshtml view-->
+    <div id="map"></div> <!--holds the map-->
+    <script>
+        var map, infoWindow;
+
+        function initMap() {
+            var options = {
+                center: { lat: 43.038902, lng: -87.906471 }, //default Milwaukee location
+                zoom: 12
+            };
+
+            map = new google.maps.Map(document.getElementById('map'), options);
+            infoWindow = new google.maps.InfoWindow;
+            infoWindow.setContent('');
+
+            /*Auto-fill Search box*/
+            var input = document.getElementById('search')
+            var searchBox = new google.maps.places.SearchBox(input);
+
+            map.addListener('bounds_changed', function () {
+                searchBox.setBounds(map.getBounds());
+            });
+
+            map.addListener('bounds_changed', function () {
+                searchBox.setBounds(map.getBounds());
+            });
+
+            var markers = [];
+
+            searchBox.addListener('places_changed', function () {
+                var places = searchBox.getPlaces();
+
+                if (places.length == 0)
+                    return;
+
+                markers.forEach(function (m) { m.setMap(null); });
+                markers = [];
+
+                var bounds = new google.maps.LatLngBounds();
+                places.forEach(function (p) {
+                    if (!p.geometry)
+                        return;
+
+                    markers.push(new google.maps.Marker({
+                        map: map,
+                        title: p.name,
+                        position: p.geometry.location
+                    }));
+
+                    if (p.geometry.viewport)
+                        bounds.union(p.geometry.viewport);
+                    else
+                        bounds.extend(p.geometry.location);
+                });
+
+                map.fitBounds(bounds);
+            });
+        }
+
+        //find user location
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (p) {
+                var position = {
+                    lat: p.coords.latitude,
+                    lng: p.coords.longitude
+                };
+
+                //popup marker
+                infoWindow.setPosition(position);
+                infoWindow.setContent('You are here!');
+                infoWindow.open(map);
+                map.setCenter(position);
+
+
+            }, function () {
+                handleLocationError('Geolocation service failed', map.getCenter());
+            });
+        } else {
+            handleLocationError('No geolocation available.', map.getCenter());
+        }
+
+
+
+        function handleLocationError(content, position) {
+            infoWindow.setPosition(position);
+            infoWindow.setContent(content);
+            infoWindow.open(map);
+        }
+
+    </script>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <h1>Random text random text random text</h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap scripts. -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <!-- Google Maps scripts. -->
+    <!--<script src="GoogleMaps.js"></script>--> <!--reference to .js file, but might not need as well as im writing the functions in here-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkHnmp3h5Tbjus8x_L8w2nWwaIrmjXo5U&callback=initMap&libraries=places" async defer></script>
+</body>
+</html>
+
+
+
