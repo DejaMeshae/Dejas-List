@@ -21,7 +21,7 @@ namespace DejasList.Controllers
             var ContractorLoggedIn = User.Identity.GetUserId();
             var contractors = db.Contractors.Where(e => e.ApplicationUserId == ContractorLoggedIn).Include(c=>c.ApplicationUser).FirstOrDefault();
             //var contractors = db.Contractors.Include(c => c.ApplicationUser);
-            return View(contractors.ToList());
+            return View(contractors);
         }
 
         public IQueryable<Contractor>GetContractors()

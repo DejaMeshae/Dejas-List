@@ -22,7 +22,7 @@ namespace DejasList.Controllers
             var ClientLoggedIn = User.Identity.GetUserId();
             var clients = db.Clients.Where(e => e.ApplicationUserId == ClientLoggedIn).Include(c => c.ApplicationUser).FirstOrDefault();
 
-            return View(clients.ToList());
+            return View(clients);
         }
 
 
