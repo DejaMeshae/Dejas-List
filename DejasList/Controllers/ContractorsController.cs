@@ -39,7 +39,7 @@ namespace DejasList.Controllers
         // GET: Contractors/Create
         public ActionResult Create()
         {
-            //ViewBag.ApplicationUserId = new SelectList(db.ApplicationUsers, "Id", "Email");
+            ViewBag.ApplicationUserId = new SelectList(db.ApplicationUsers, "Id", "Email");
             return View();
         }
 
@@ -57,7 +57,7 @@ namespace DejasList.Controllers
                 return RedirectToAction("Index");
             }
 
-            //ViewBag.ApplicationUserId = new SelectList(db.ApplicationUsers, "Id", "Email", contractor.ApplicationUserId);
+            ViewBag.ApplicationUserId = new SelectList(db.ApplicationUsers, "Id", "Email", contractor.ApplicationUserId);
             return View(contractor);
         }
 
@@ -73,7 +73,7 @@ namespace DejasList.Controllers
             {
                 return HttpNotFound();
             }
-            //ViewBag.ApplicationUserId = new SelectList(db.ApplicationUsers, "Id", "Email", contractor.ApplicationUserId);
+            ViewBag.ApplicationUserId = new SelectList(db.ApplicationUsers, "Id", "Email", contractor.ApplicationUserId);
             return View(contractor);
         }
 
@@ -90,7 +90,7 @@ namespace DejasList.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            //ViewBag.ApplicationUserId = new SelectList(db.ApplicationUsers, "Id", "Email", contractor.ApplicationUserId);
+            ViewBag.ApplicationUserId = new SelectList(db.ApplicationUsers, "Id", "Email", contractor.ApplicationUserId);
             return View(contractor);
         }
 
