@@ -12,7 +12,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Email)
+            @Html.DisplayNameFor(model => model.ApplicationUser.Email)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.FirstName)
@@ -59,9 +59,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.State)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.Email)
-            </td>
+            </td>*@
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.ClientId }) |
                 @Html.ActionLink("Details", "Details", new { id = item.ClientId }) |

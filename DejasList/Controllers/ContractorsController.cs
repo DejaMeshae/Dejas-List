@@ -19,9 +19,9 @@ namespace DejasList.Controllers
         public ActionResult Index()
         {
             var ContractorLoggedIn = User.Identity.GetUserId();
-            //var contractors = db.Clients.Include(e => e.ApplicationUserId == ContractorLoggedIn);
-            var contractors = db.Contractors.Include(c => c.ApplicationUser);
-            return View(contractors.ToList());
+            var contractors = db.Contractors.Where(e => e.ApplicationUserId == ContractorLoggedIn).Include(c=>c.ApplicationUser).FirstOrDefault();
+            //var contractors = db.Contractors.Include(c => c.ApplicationUser);
+            return View(contractors);
         }
 
         // GET: Contractors/Details/5
@@ -52,11 +52,10 @@ namespace DejasList.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ContractorId,FirstName,LastName,Address,City,Zipcode,State,Email,ApplicationUserId")] Contractor contractor)
+        public ActionResult Create([Bind(Include = "ContractorId,FirstName,LastName,Address,City,Zipcode,State")] Contractor contractor)
         {
             if (ModelState.IsValid)
             {
-                //Google location here 
                 db.Contractors.Add(contractor);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -87,7 +86,7 @@ namespace DejasList.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ContractorId,FirstName,LastName,Address,City,Zipcode,State,Email,ApplicationUserId")] Contractor contractor)
+        public ActionResult Edit([Bind(Include = "ContractorId,FirstName,LastName,Address,City,Zipcode,State")] Contractor contractor)
         {
             if (ModelState.IsValid)
             {

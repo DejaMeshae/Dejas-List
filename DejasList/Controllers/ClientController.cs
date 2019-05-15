@@ -20,9 +20,9 @@ namespace DejasList.Controllers
         public ActionResult Index()
         {
             var ClientLoggedIn = User.Identity.GetUserId();
-            //var clients = db.Clients.Include(e => e.ApplicationUserId == ClientLoggedIn);
-            var clients = db.Clients.Include(c => c.ApplicationUser);
-            return View(clients);
+            var clients = db.Clients.Where(e => e.ApplicationUserId == ClientLoggedIn).Include(c => c.ApplicationUser).FirstOrDefault();
+
+            return View(clients.ToList());
         }
 
         // GET:/Details/5
@@ -53,13 +53,10 @@ namespace DejasList.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ClientId,FirstName,LastName,Address,City,State,ZipCode,Email")] Client client)
+        public ActionResult Create([Bind(Include = "ClientId,FirstName,LastName,Address,City,State,ZipCode")] Client client)
         {
             if (ModelState.IsValid)
             {
-                //Work on this to cal to get the lat and ln when a user creates their account //
-                //string address = newCustomer.Adress
-                // GeoCode
                 client.ApplicationUserId = User.Identity.GetUserId();
                 db.Clients.Add(client);
                 db.SaveChanges();
@@ -91,7 +88,7 @@ namespace DejasList.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ClientId,FirstName,LastName,Address,City,State,ZipCode,Email")] Client client)
+        public ActionResult Edit([Bind(Include = "ClientId,FirstName,LastName,Address,City,State,ZipCode")] Client client)
         {
             if (ModelState.IsValid)
             {
