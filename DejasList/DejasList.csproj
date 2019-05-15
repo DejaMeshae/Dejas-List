@@ -185,21 +185,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201905131752309_CreatedClientTable.cs" />
-    <Compile Include="Migrations\201905131752309_CreatedClientTable.Designer.cs">
-      <DependentUpon>201905131752309_CreatedClientTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905131835093_CreatedJobsTable.cs" />
-    <Compile Include="Migrations\201905131835093_CreatedJobsTable.Designer.cs">
-      <DependentUpon>201905131835093_CreatedJobsTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905131902019_CreatedContractorsTable.cs" />
-    <Compile Include="Migrations\201905131902019_CreatedContractorsTable.Designer.cs">
-      <DependentUpon>201905131902019_CreatedContractorsTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905132050519_RemovedUserNameForAdmin.cs" />
-    <Compile Include="Migrations\201905132050519_RemovedUserNameForAdmin.Designer.cs">
-      <DependentUpon>201905132050519_RemovedUserNameForAdmin.cs</DependentUpon>
+    <Compile Include="Migrations\201905141404432_thing.cs" />
+    <Compile Include="Migrations\201905141404432_thing.Designer.cs">
+      <DependentUpon>201905141404432_thing.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -292,17 +280,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201905131752309_CreatedClientTable.resx">
-      <DependentUpon>201905131752309_CreatedClientTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905131835093_CreatedJobsTable.resx">
-      <DependentUpon>201905131835093_CreatedJobsTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905131902019_CreatedContractorsTable.resx">
-      <DependentUpon>201905131902019_CreatedContractorsTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905132050519_RemovedUserNameForAdmin.resx">
-      <DependentUpon>201905132050519_RemovedUserNameForAdmin.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201905141404432_thing.resx">
+      <DependentUpon>201905141404432_thing.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

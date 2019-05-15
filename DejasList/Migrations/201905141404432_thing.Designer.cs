@@ -7,13 +7,13 @@ namespace DejasList.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class RemovedUserNameForAdmin : IMigrationMetadata
+    public sealed partial class thing : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(RemovedUserNameForAdmin));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(thing));
         
         string IMigrationMetadata.Id
         {
-            get { return "201905132050519_RemovedUserNameForAdmin"; }
+            get { return "201905141404432_thing"; }
         }
         
         string IMigrationMetadata.Source
