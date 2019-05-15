@@ -194,6 +194,10 @@
     <Compile Include="Migrations\201905141645586_AddedStates.Designer.cs">
       <DependentUpon>201905141645586_AddedStates.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905151453160_ChangedEmail.cs" />
+    <Compile Include="Migrations\201905151453160_ChangedEmail.Designer.cs">
+      <DependentUpon>201905151453160_ChangedEmail.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Client.cs" />
@@ -300,6 +304,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905141645586_AddedStates.resx">
       <DependentUpon>201905141645586_AddedStates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905151453160_ChangedEmail.resx">
+      <DependentUpon>201905151453160_ChangedEmail.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
