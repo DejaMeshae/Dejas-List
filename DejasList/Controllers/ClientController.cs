@@ -25,6 +25,27 @@ namespace DejasList.Controllers
             return View(clients.ToList());
         }
 
+
+        public IQueryable<Client> GetClients()
+        {
+            var clients = from w in db.Clients
+                              select new Client()
+                              {
+                                  ApplicationUserId = w.ApplicationUserId,
+                                  FirstName = w.FirstName,
+                                  LastName = w.LastName,
+                                  Address = w.Address,
+                                  City = w.City,
+                                  State = w.State,
+                                  ClientId = w.ClientId,
+                                  Zipcode = w.Zipcode
+                              };
+            return clients;
+        }
+
+
+
+
         // GET:/Details/5
         public ActionResult Details(int? id)
         {

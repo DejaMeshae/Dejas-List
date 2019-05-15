@@ -21,11 +21,28 @@ namespace DejasList.Controllers
             var ContractorLoggedIn = User.Identity.GetUserId();
             var contractors = db.Contractors.Where(e => e.ApplicationUserId == ContractorLoggedIn).Include(c=>c.ApplicationUser).FirstOrDefault();
             //var contractors = db.Contractors.Include(c => c.ApplicationUser);
-            return View(contractors);
+            return View(contractors.ToList());
         }
 
-        // GET: Contractors/Details/5
-        public ActionResult Details(int? id)
+        public IQueryable<Contractor>GetContractors()
+            {
+            var contractors = from w in db.Contractors
+                              select new Contractor()
+                              {
+                                  ApplicationUserId = w.ApplicationUserId,
+                                  FirstName = w.FirstName,
+                                  LastName = w.LastName,
+                                  Address = w.Address,
+                                  City = w.City,
+                                  State = w.State,
+                                  ContractorId = w.ContractorId,
+                                  Zipcode = w.Zipcode
+                              };
+                               return contractors;
+            }
+
+    // GET: Contractors/Details/5
+    public ActionResult Details(int? id)
         {
             if (id == null)
             {
