@@ -13,15 +13,13 @@ namespace DejasList.Models
         public int JobsId { get; set; }
         public string TypeOfProject { get; set; }
         public string SizeOfProject { get; set; }
-        public double Budget { get; set; }
+        public string Budget { get; set; }
 
         [ForeignKey("Client")]
         public int ClientId { get; set; }
         public Client Client { get; set; }
 
-        [ForeignKey("Contractor")]
         public int ContractorId { get; set; }
-        public Contractor Contractor { get; set; }
 
     }
 }

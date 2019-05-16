@@ -80,6 +80,11 @@ namespace DejasList.Controllers
             if (ModelState.IsValid)
             {
                 client.ApplicationUserId = User.Identity.GetUserId();
+                string address = (client.Address + "+" + client.City + "+" + client.State + "+" + client.Zipcode);
+                GeocodeController geocode = new GeocodeController();
+                geocode.SendRequest(address);
+                client.Lat = geocode.latitude;
+                client.Lng = geocode.longitude;
                 db.Clients.Add(client);
                 db.SaveChanges();
                 return RedirectToAction("Details", new { id = client.ClientId });
@@ -148,11 +153,16 @@ namespace DejasList.Controllers
             return RedirectToAction("Index");
         }
 
-       public ActionResult CreateJob(int? id)
-        {
-            var job = new JobsController();
-            return job.Create();
-        }
+       //public ActionResult CreateJob(int? id)
+       // {
+       //     //var jobs = DependencyResolver.Current.GetService<JobsController>();
+       //     //jobs.ControllerContext = new ControllerContext(this.Request.RequestContext, jobs);
+       //     return RedirectToAction("Create", "JobsController");
+
+       //     //return jobs.Create();
+       //     //var job = new JobsController().Create();
+       //     //return jobs;
+       // }
 
 
 

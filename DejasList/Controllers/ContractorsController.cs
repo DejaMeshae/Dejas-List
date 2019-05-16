@@ -19,9 +19,9 @@ namespace DejasList.Controllers
         public ActionResult Index()
         {
             var ContractorLoggedIn = User.Identity.GetUserId();
-            var contractors = db.Contractors.Where(e => e.ApplicationUserId == ContractorLoggedIn).Include(c=>c.ApplicationUser).FirstOrDefault();
-            //var contractors = db.Contractors.Include(c => c.ApplicationUser);
-            return View(contractors);
+            var contractors = db.Contractors.Where(e => e.ApplicationUserId == ContractorLoggedIn).Include(c => c.ApplicationUser).FirstOrDefault();
+            var contractor = Details(contractors.ContractorId);
+            return View(contractor);
         }
 
         public IQueryable<Contractor>GetContractors()
@@ -48,7 +48,7 @@ namespace DejasList.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Contractor contractor = db.Contractors.Find(id);
+            Contractor contractor = db.Contractors.Where(c => c.ContractorId == id).Include(a => a.ApplicationUser).FirstOrDefault();
             if (contractor == null)
             {
                 return HttpNotFound();
@@ -73,9 +73,15 @@ namespace DejasList.Controllers
         {
             if (ModelState.IsValid)
             {
+                contractor.ApplicationUserId = User.Identity.GetUserId();
+                string address = (contractor.Address + "+" + contractor.City + "+" + contractor.State + "+" + contractor.Zipcode);
+                GeocodeController geocode = new GeocodeController();
+                geocode.SendRequest(address);
+                contractor.Lat = geocode.latitude;
+                contractor.Lng = geocode.longitude;
                 db.Contractors.Add(contractor);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", new { id = contractor.ContractorId });
             }
 
             ViewBag.ApplicationUserId = new SelectList(db.Users, "Id", "Email", contractor.ApplicationUserId); //Will likley not need this line of code delete in the end *DA

@@ -17,6 +17,8 @@ namespace DejasList.Models
         public string City { get; set; }
         public string Zipcode { get; set; }
         public string State { get; set; }
+        public string Lat { get; set; }
+        public string Lng { get; set; }
 
         public IEnumerable<Jobs> Jobs { get; set; }
 

@@ -214,6 +214,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\APIKeys.cs" />
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\ContractorsController.cs" />
     <Compile Include="Controllers\GeoCodeController.cs" />
@@ -232,6 +233,22 @@
     <Compile Include="Migrations\201905161757584_AddedJobList.cs" />
     <Compile Include="Migrations\201905161757584_AddedJobList.Designer.cs">
       <DependentUpon>201905161757584_AddedJobList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905162019031_TookOffConstructorFK.cs" />
+    <Compile Include="Migrations\201905162019031_TookOffConstructorFK.Designer.cs">
+      <DependentUpon>201905162019031_TookOffConstructorFK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905162147288_ChangedPropertyOfBudget.cs" />
+    <Compile Include="Migrations\201905162147288_ChangedPropertyOfBudget.Designer.cs">
+      <DependentUpon>201905162147288_ChangedPropertyOfBudget.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905162158154_AddedLatLonPropToClientModel.cs" />
+    <Compile Include="Migrations\201905162158154_AddedLatLonPropToClientModel.Designer.cs">
+      <DependentUpon>201905162158154_AddedLatLonPropToClientModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905162159380_AddedLatLonPropToContractorModel.cs" />
+    <Compile Include="Migrations\201905162159380_AddedLatLonPropToContractorModel.Designer.cs">
+      <DependentUpon>201905162159380_AddedLatLonPropToContractorModel.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -317,6 +334,8 @@
     <Content Include="Views\Jobs\Edit.cshtml" />
     <Content Include="Views\Jobs\Index.cshtml" />
     <Content Include="Views\Jobs.cshtml" />
+    <Content Include="Views\Jobs\JobList.cshtml" />
+    <Content Include="Views\Client\CreateJob.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -340,6 +359,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905161757584_AddedJobList.resx">
       <DependentUpon>201905161757584_AddedJobList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905162019031_TookOffConstructorFK.resx">
+      <DependentUpon>201905162019031_TookOffConstructorFK.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905162147288_ChangedPropertyOfBudget.resx">
+      <DependentUpon>201905162147288_ChangedPropertyOfBudget.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905162158154_AddedLatLonPropToClientModel.resx">
+      <DependentUpon>201905162158154_AddedLatLonPropToClientModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905162159380_AddedLatLonPropToContractorModel.resx">
+      <DependentUpon>201905162159380_AddedLatLonPropToContractorModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
