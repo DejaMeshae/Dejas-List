@@ -225,13 +225,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201905151530307_AddedStatesInClientView.cs" />
-    <Compile Include="Migrations\201905151530307_AddedStatesInClientView.Designer.cs">
-      <DependentUpon>201905151530307_AddedStatesInClientView.cs</DependentUpon>
+    <Compile Include="Migrations\201905161552463_InitialMigrate.cs" />
+    <Compile Include="Migrations\201905161552463_InitialMigrate.Designer.cs">
+      <DependentUpon>201905161552463_InitialMigrate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201905161430256_TheModelBackingTheApplicationDbContextContextHasChangedSinceTheDatabasWasCreated.cs" />
-    <Compile Include="Migrations\201905161430256_TheModelBackingTheApplicationDbContextContextHasChangedSinceTheDatabasWasCreated.Designer.cs">
-      <DependentUpon>201905161430256_TheModelBackingTheApplicationDbContextContextHasChangedSinceTheDatabasWasCreated.cs</DependentUpon>
+    <Compile Include="Migrations\201905161757584_AddedJobList.cs" />
+    <Compile Include="Migrations\201905161757584_AddedJobList.Designer.cs">
+      <DependentUpon>201905161757584_AddedJobList.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -335,11 +335,11 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201905151530307_AddedStatesInClientView.resx">
-      <DependentUpon>201905151530307_AddedStatesInClientView.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201905161552463_InitialMigrate.resx">
+      <DependentUpon>201905161552463_InitialMigrate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905161430256_TheModelBackingTheApplicationDbContextContextHasChangedSinceTheDatabasWasCreated.resx">
-      <DependentUpon>201905161430256_TheModelBackingTheApplicationDbContextContextHasChangedSinceTheDatabasWasCreated.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201905161757584_AddedJobList.resx">
+      <DependentUpon>201905161757584_AddedJobList.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

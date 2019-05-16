@@ -7,13 +7,13 @@ namespace DejasList.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class AddedStatesInClientView : IMigrationMetadata
+    public sealed partial class InitialMigrate : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddedStatesInClientView));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialMigrate));
         
         string IMigrationMetadata.Id
         {
-            get { return "201905151530307_AddedStatesInClientView"; }
+            get { return "201905161552463_InitialMigrate"; }
         }
         
         string IMigrationMetadata.Source

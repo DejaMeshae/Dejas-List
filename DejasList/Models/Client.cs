@@ -17,6 +17,8 @@ namespace DejasList.Models
         public string City { get; set; }
         public string State { get; set; }
         public string Zipcode { get; set; }
+        
+        public IEnumerable<Jobs> Jobs { get; set; }
 
         [ForeignKey("ApplicationUser")]
         public string ApplicationUserId { get; set; }

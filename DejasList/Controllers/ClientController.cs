@@ -53,7 +53,8 @@ namespace DejasList.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Client clients = db.Clients.Find(id);
+
+            Client clients = db.Clients.Where(c => c.ClientId == id).Include(a => a.ApplicationUser).FirstOrDefault();
             if (clients == null)
             {
                 return HttpNotFound();
@@ -81,7 +82,7 @@ namespace DejasList.Controllers
                 client.ApplicationUserId = User.Identity.GetUserId();
                 db.Clients.Add(client);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", new { id = client.ClientId });
             }
 
             ViewBag.UserId = new SelectList(db.Users, "UserId", "UserName", client.ApplicationUserId);
