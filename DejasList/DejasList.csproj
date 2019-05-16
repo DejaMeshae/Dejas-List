@@ -230,9 +230,9 @@
     <Compile Include="Migrations\201905151530307_AddedStatesInClientView.Designer.cs">
       <DependentUpon>201905151530307_AddedStatesInClientView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201905151453160_ChangedEmail.cs" />
-    <Compile Include="Migrations\201905151453160_ChangedEmail.Designer.cs">
-      <DependentUpon>201905151453160_ChangedEmail.cs</DependentUpon>
+    <Compile Include="Migrations\201905161430256_TheModelBackingTheApplicationDbContextContextHasChangedSinceTheDatabasWasCreated.cs" />
+    <Compile Include="Migrations\201905161430256_TheModelBackingTheApplicationDbContextContextHasChangedSinceTheDatabasWasCreated.Designer.cs">
+      <DependentUpon>201905161430256_TheModelBackingTheApplicationDbContextContextHasChangedSinceTheDatabasWasCreated.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -339,8 +339,8 @@
     <EmbeddedResource Include="Migrations\201905151530307_AddedStatesInClientView.resx">
       <DependentUpon>201905151530307_AddedStatesInClientView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905151453160_ChangedEmail.resx">
-      <DependentUpon>201905151453160_ChangedEmail.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201905161430256_TheModelBackingTheApplicationDbContextContextHasChangedSinceTheDatabasWasCreated.resx">
+      <DependentUpon>201905161430256_TheModelBackingTheApplicationDbContextContextHasChangedSinceTheDatabasWasCreated.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -7,13 +7,13 @@ namespace DejasList.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class ChangedEmail : IMigrationMetadata
+    public sealed partial class TheModelBackingTheApplicationDbContextContextHasChangedSinceTheDatabasWasCreated : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ChangedEmail));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(TheModelBackingTheApplicationDbContextContextHasChangedSinceTheDatabasWasCreated));
         
         string IMigrationMetadata.Id
         {
-            get { return "201905151453160_ChangedEmail"; }
+            get { return "201905161430256_TheModelBackingTheApplicationDbContextContextHasChangedSinceTheDatabasWasCreated"; }
         }
         
         string IMigrationMetadata.Source
