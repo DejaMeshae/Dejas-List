@@ -214,6 +214,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\APIKeys.cs" />
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\ContractorsController.cs" />
     <Compile Include="Controllers\GeoCodeController.cs" />
@@ -240,6 +241,14 @@
     <Compile Include="Migrations\201905162147288_ChangedPropertyOfBudget.cs" />
     <Compile Include="Migrations\201905162147288_ChangedPropertyOfBudget.Designer.cs">
       <DependentUpon>201905162147288_ChangedPropertyOfBudget.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905162158154_AddedLatLonPropToClientModel.cs" />
+    <Compile Include="Migrations\201905162158154_AddedLatLonPropToClientModel.Designer.cs">
+      <DependentUpon>201905162158154_AddedLatLonPropToClientModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905162159380_AddedLatLonPropToContractorModel.cs" />
+    <Compile Include="Migrations\201905162159380_AddedLatLonPropToContractorModel.Designer.cs">
+      <DependentUpon>201905162159380_AddedLatLonPropToContractorModel.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -356,6 +365,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905162147288_ChangedPropertyOfBudget.resx">
       <DependentUpon>201905162147288_ChangedPropertyOfBudget.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905162158154_AddedLatLonPropToClientModel.resx">
+      <DependentUpon>201905162158154_AddedLatLonPropToClientModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905162159380_AddedLatLonPropToContractorModel.resx">
+      <DependentUpon>201905162159380_AddedLatLonPropToContractorModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
