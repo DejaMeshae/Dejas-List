@@ -237,6 +237,10 @@
     <Compile Include="Migrations\201905162019031_TookOffConstructorFK.Designer.cs">
       <DependentUpon>201905162019031_TookOffConstructorFK.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905162147288_ChangedPropertyOfBudget.cs" />
+    <Compile Include="Migrations\201905162147288_ChangedPropertyOfBudget.Designer.cs">
+      <DependentUpon>201905162147288_ChangedPropertyOfBudget.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Client.cs" />
@@ -349,6 +353,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905162019031_TookOffConstructorFK.resx">
       <DependentUpon>201905162019031_TookOffConstructorFK.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905162147288_ChangedPropertyOfBudget.resx">
+      <DependentUpon>201905162147288_ChangedPropertyOfBudget.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
