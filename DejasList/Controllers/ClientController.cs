@@ -20,9 +20,31 @@ namespace DejasList.Controllers
         public ActionResult Index()
         {
             var ClientLoggedIn = User.Identity.GetUserId();
-            var clients = db.Clients.Include(e => e.ApplicationUserId == ClientLoggedIn);
+            var clients = db.Clients.Where(e => e.ApplicationUserId == ClientLoggedIn).Include(c => c.ApplicationUser).FirstOrDefault();
+
             return View(clients);
         }
+
+
+        public IQueryable<Client> GetClients()
+        {
+            var clients = from w in db.Clients
+                              select new Client()
+                              {
+                                  ApplicationUserId = w.ApplicationUserId,
+                                  FirstName = w.FirstName,
+                                  LastName = w.LastName,
+                                  Address = w.Address,
+                                  City = w.City,
+                                  State = w.State,
+                                  ClientId = w.ClientId,
+                                  Zipcode = w.Zipcode
+                              };
+            return clients;
+        }
+
+
+
 
         // GET:/Details/5
         public ActionResult Details(int? id)
@@ -52,7 +74,7 @@ namespace DejasList.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ClientId,FirstName,LastName,Address,City,State,ZipCode,Email")] Client client)
+        public ActionResult Create([Bind(Include = "ClientId,FirstName,LastName,Address,City,State,ZipCode")] Client client)
         {
             if (ModelState.IsValid)
             {
@@ -87,7 +109,7 @@ namespace DejasList.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ClientId,FirstName,LastName,Address,City,State,ZipCode,Email")] Client client)
+        public ActionResult Edit([Bind(Include = "ClientId,FirstName,LastName,Address,City,State,ZipCode")] Client client)
         {
             if (ModelState.IsValid)
             {

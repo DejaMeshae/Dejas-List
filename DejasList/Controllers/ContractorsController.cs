@@ -19,13 +19,30 @@ namespace DejasList.Controllers
         public ActionResult Index()
         {
             var ContractorLoggedIn = User.Identity.GetUserId();
-            var contractors = db.Clients.Include(e => e.ApplicationUserId == ContractorLoggedIn);
+            var contractors = db.Contractors.Where(e => e.ApplicationUserId == ContractorLoggedIn).Include(c=>c.ApplicationUser).FirstOrDefault();
             //var contractors = db.Contractors.Include(c => c.ApplicationUser);
-            return View(contractors.ToList());
+            return View(contractors);
         }
 
-        // GET: Contractors/Details/5
-        public ActionResult Details(int? id)
+        public IQueryable<Contractor>GetContractors()
+            {
+            var contractors = from w in db.Contractors
+                              select new Contractor()
+                              {
+                                  ApplicationUserId = w.ApplicationUserId,
+                                  FirstName = w.FirstName,
+                                  LastName = w.LastName,
+                                  Address = w.Address,
+                                  City = w.City,
+                                  State = w.State,
+                                  ContractorId = w.ContractorId,
+                                  Zipcode = w.Zipcode
+                              };
+                               return contractors;
+            }
+
+    // GET: Contractors/Details/5
+    public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -52,7 +69,7 @@ namespace DejasList.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ContractorId,FirstName,LastName,Address,City,Zipcode,State,Email,ApplicationUserId")] Contractor contractor)
+        public ActionResult Create([Bind(Include = "ContractorId,FirstName,LastName,Address,City,Zipcode,State")] Contractor contractor)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +103,7 @@ namespace DejasList.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ContractorId,FirstName,LastName,Address,City,Zipcode,State,Email,ApplicationUserId")] Contractor contractor)
+        public ActionResult Edit([Bind(Include = "ContractorId,FirstName,LastName,Address,City,Zipcode,State")] Contractor contractor)
         {
             if (ModelState.IsValid)
             {

@@ -173,7 +173,7 @@ namespace DejasList.Controllers
                     }
                     if (model.UserRoles == "Client")
                     {
-                        return RedirectToAction("Create", "Client");  ////DIA
+                        return RedirectToAction("Create", "Client");  
                     }
                 }
 
