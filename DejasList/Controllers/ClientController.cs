@@ -21,8 +21,8 @@ namespace DejasList.Controllers
         {
             var ClientLoggedIn = User.Identity.GetUserId();
             var clients = db.Clients.Where(e => e.ApplicationUserId == ClientLoggedIn).Include(c => c.ApplicationUser).FirstOrDefault();
-
-            return View(clients);
+            var client = Details(clients.ClientId);
+            return View(client);
         }
 
 
@@ -146,6 +146,15 @@ namespace DejasList.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+       public ActionResult CreateJob(int? id)
+        {
+            var job = new JobsController();
+            return job.Create();
+        }
+
+
+
 
         protected override void Dispose(bool disposing)
         {
