@@ -7,13 +7,13 @@ namespace DejasList.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class TheModelBackingTheApplicationDbContextContextHasChangedSinceTheDatabasWasCreated : IMigrationMetadata
+    public sealed partial class AddedJobList : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(TheModelBackingTheApplicationDbContextContextHasChangedSinceTheDatabasWasCreated));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddedJobList));
         
         string IMigrationMetadata.Id
         {
-            get { return "201905161430256_TheModelBackingTheApplicationDbContextContextHasChangedSinceTheDatabasWasCreated"; }
+            get { return "201905161757584_AddedJobList"; }
         }
         
         string IMigrationMetadata.Source

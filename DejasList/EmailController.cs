@@ -7,9 +7,6 @@ using System.Web.Http;
 using SendGrid;
 using SendGrid.Helpers.Mail;
 using System.Threading.Tasks;
-
-
-
 namespace DejasList
 {
     public class EmailController : ApiController
@@ -34,6 +31,15 @@ namespace DejasList
             var response = await client.SendEmailAsync(msg);
         }
 
+
+
+
+
+        //// GET api/<controller>
+        //public IEnumerable<string> Get()
+        //{
+        //    return new string[] { "value1", "value2" };
+        //}
 
 
 
