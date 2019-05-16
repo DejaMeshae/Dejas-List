@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using DejasList.Models;
+using Microsoft.AspNet.Identity;
 
 namespace DejasList.Controllers
 {
@@ -17,7 +18,7 @@ namespace DejasList.Controllers
         // GET: Jobs
         public ActionResult Index()
         {
-            var jobs = db.Jobs.Include(j => j.Client).Include(j => j.Contractor);
+            var jobs = db.Jobs.Include(j => j.Client);
             return View(jobs.ToList());
         }
 
@@ -49,10 +50,14 @@ namespace DejasList.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "JobsId,TypeOfProject,SizeOfProject,Budget,ClientId,ContractorId")] Jobs jobs)
+        public ActionResult Create([Bind(Include = "JobsId,TypeOfProject,SizeOfProject,Budget")] Jobs jobs)
         {
             if (ModelState.IsValid)
             {
+                var id = User.Identity.GetUserId();
+                var job = db.Clients.Where(k => k.ApplicationUserId == id).Select(s => s.ClientId).FirstOrDefault();
+                jobs.ClientId = job;
+                //db.Jobs.Add(job);
                 db.Jobs.Add(jobs);
                 db.SaveChanges();
                 return RedirectToAction("Index");

@@ -233,6 +233,10 @@
     <Compile Include="Migrations\201905161757584_AddedJobList.Designer.cs">
       <DependentUpon>201905161757584_AddedJobList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905162019031_TookOffConstructorFK.cs" />
+    <Compile Include="Migrations\201905162019031_TookOffConstructorFK.Designer.cs">
+      <DependentUpon>201905162019031_TookOffConstructorFK.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Client.cs" />
@@ -317,6 +321,8 @@
     <Content Include="Views\Jobs\Edit.cshtml" />
     <Content Include="Views\Jobs\Index.cshtml" />
     <Content Include="Views\Jobs.cshtml" />
+    <Content Include="Views\Jobs\JobList.cshtml" />
+    <Content Include="Views\Client\CreateJob.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -340,6 +346,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905161757584_AddedJobList.resx">
       <DependentUpon>201905161757584_AddedJobList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905162019031_TookOffConstructorFK.resx">
+      <DependentUpon>201905162019031_TookOffConstructorFK.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

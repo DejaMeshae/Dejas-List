@@ -19,9 +19,7 @@ namespace DejasList.Models
         public int ClientId { get; set; }
         public Client Client { get; set; }
 
-        [ForeignKey("Contractor")]
         public int ContractorId { get; set; }
-        public Contractor Contractor { get; set; }
 
     }
 }

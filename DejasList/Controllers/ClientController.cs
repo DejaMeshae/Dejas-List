@@ -150,8 +150,13 @@ namespace DejasList.Controllers
 
        public ActionResult CreateJob(int? id)
         {
-            var job = new JobsController();
-            return job.Create();
+            //var jobs = DependencyResolver.Current.GetService<JobsController>();
+            //jobs.ControllerContext = new ControllerContext(this.Request.RequestContext, jobs);
+            return RedirectToAction("Create", "JobsController");
+
+            //return jobs.Create();
+            //var job = new JobsController().Create();
+            //return jobs;
         }
 
 
