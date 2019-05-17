@@ -18,9 +18,31 @@ namespace DejasList.Controllers
         // GET: Jobs
         public ActionResult Index()
         {
+            if (this.User.IsInRole("Client"))
+            {
+                return RedirectToAction("ClientJobList");
+            }
+            else if (this.User.IsInRole("Contractor"))
+            {
+                return RedirectToAction("ContractorJobList");
+            }
+            return View();
+        }
+
+
+        public ActionResult ClientJobList()
+        {
             var jobs = db.Jobs.Include(j => j.Client);
             return View(jobs.ToList());
         }
+
+        public ActionResult ContractorJobList()
+        {
+            var jobs = db.Jobs;
+            return View(jobs.ToList());
+        }
+
+
 
         // GET: Jobs/Details/5
         public ActionResult Details(int? id)

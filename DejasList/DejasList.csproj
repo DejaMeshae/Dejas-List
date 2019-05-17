@@ -335,8 +335,9 @@
     <Content Include="Views\Jobs\Edit.cshtml" />
     <Content Include="Views\Jobs\Index.cshtml" />
     <Content Include="Views\Jobs.cshtml" />
-    <Content Include="Views\Jobs\JobList.cshtml" />
+    <Content Include="Views\Jobs\ClientJobList.cshtml" />
     <Content Include="Views\Client\CreateJob.cshtml" />
+    <Content Include="Views\Jobs\ContractorJobList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
