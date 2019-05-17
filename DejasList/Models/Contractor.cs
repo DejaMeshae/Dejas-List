@@ -26,7 +26,7 @@ namespace DejasList.Models
         public DateTime DateOfBirth { get; set; }
         public string Lat { get; set; }
         public string Lng { get; set; }
-        public bool Background { get; set; }
+        //public bool Background { get; set; }
 
         public IEnumerable<Jobs> Jobs { get; set; }
 

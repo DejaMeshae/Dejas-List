@@ -69,6 +69,11 @@ namespace DejasList.Models
         public string UserRoles { get; set; }
 
         [Required]
+        [Phone]
+        [Display(Name = "Phone Number")]
+        public string Number { get; set; }
+
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }

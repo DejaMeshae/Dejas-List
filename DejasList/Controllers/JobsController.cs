@@ -33,7 +33,8 @@ namespace DejasList.Controllers
 
         public ActionResult ClientJobList()
         {
-            var jobs = db.Jobs.Include(j => j.Client);
+            var id = db.Jobs.Select(h => h.ClientId).FirstOrDefault();
+            var jobs = db.Jobs.Select(j => j.ClientId==id);
             return View(jobs.ToList());
         }
 
@@ -80,6 +81,10 @@ namespace DejasList.Controllers
                 var id = User.Identity.GetUserId();
                 var job = db.Clients.Where(k => k.ApplicationUserId == id).Select(s => s.ClientId).FirstOrDefault();
                 jobs.ClientId = job;
+                var lat = db.Clients.Where(c => c.ClientId == jobs.ClientId).Select(f => f.Lat).FirstOrDefault();
+                var lng = db.Clients.Where(c => c.ClientId == jobs.ClientId).Select(f => f.Lng).FirstOrDefault();
+                jobs.Lat = lat;
+                jobs.Lng = lng;
                 //db.Jobs.Add(job);
                 db.Jobs.Add(jobs);
                 db.SaveChanges();

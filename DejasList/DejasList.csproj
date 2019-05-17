@@ -242,6 +242,14 @@
     <Compile Include="Migrations\201905171553330_test.Designer.cs">
       <DependentUpon>201905171553330_test.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905171838513_newregistar.cs" />
+    <Compile Include="Migrations\201905171838513_newregistar.Designer.cs">
+      <DependentUpon>201905171838513_newregistar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905171939286_latLng.cs" />
+    <Compile Include="Migrations\201905171939286_latLng.Designer.cs">
+      <DependentUpon>201905171939286_latLng.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Client.cs" />
@@ -359,6 +367,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905171553330_test.resx">
       <DependentUpon>201905171553330_test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905171838513_newregistar.resx">
+      <DependentUpon>201905171838513_newregistar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905171939286_latLng.resx">
+      <DependentUpon>201905171939286_latLng.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
