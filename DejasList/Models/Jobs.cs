@@ -14,6 +14,7 @@ namespace DejasList.Models
         public string TypeOfProject { get; set; }
         public string SizeOfProject { get; set; }
         public string Budget { get; set; }
+        public string Summary { get; set; }
 
         [ForeignKey("Client")]
         public int ClientId { get; set; }

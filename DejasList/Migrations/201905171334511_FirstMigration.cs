@@ -3,7 +3,7 @@ namespace DejasList.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialMigrate : DbMigration
+    public partial class FirstMigration : DbMigration
     {
         public override void Up()
         {
@@ -18,6 +18,8 @@ namespace DejasList.Migrations
                         City = c.String(),
                         State = c.String(),
                         Zipcode = c.String(),
+                        Lat = c.String(),
+                        Lng = c.String(),
                         ApplicationUserId = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.ClientId)
@@ -93,6 +95,8 @@ namespace DejasList.Migrations
                         City = c.String(),
                         Zipcode = c.String(),
                         State = c.String(),
+                        Lat = c.String(),
+                        Lng = c.String(),
                         ApplicationUserId = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.ContractorId)
@@ -106,15 +110,13 @@ namespace DejasList.Migrations
                         JobsId = c.Int(nullable: false, identity: true),
                         TypeOfProject = c.String(),
                         SizeOfProject = c.String(),
-                        Budget = c.Double(nullable: false),
+                        Budget = c.String(),
                         ClientId = c.Int(nullable: false),
                         ContractorId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.JobsId)
                 .ForeignKey("dbo.Clients", t => t.ClientId, cascadeDelete: true)
-                .ForeignKey("dbo.Contractors", t => t.ContractorId, cascadeDelete: true)
-                .Index(t => t.ClientId)
-                .Index(t => t.ContractorId);
+                .Index(t => t.ClientId);
             
             CreateTable(
                 "dbo.AspNetRoles",
@@ -131,7 +133,6 @@ namespace DejasList.Migrations
         public override void Down()
         {
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
-            DropForeignKey("dbo.Jobs", "ContractorId", "dbo.Contractors");
             DropForeignKey("dbo.Jobs", "ClientId", "dbo.Clients");
             DropForeignKey("dbo.Contractors", "ApplicationUserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.Clients", "ApplicationUserId", "dbo.AspNetUsers");
@@ -139,7 +140,6 @@ namespace DejasList.Migrations
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
-            DropIndex("dbo.Jobs", new[] { "ContractorId" });
             DropIndex("dbo.Jobs", new[] { "ClientId" });
             DropIndex("dbo.Contractors", new[] { "ApplicationUserId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });

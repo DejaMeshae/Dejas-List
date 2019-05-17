@@ -7,13 +7,13 @@ namespace DejasList.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class AddedLatLonPropToContractorModel : IMigrationMetadata
+    public sealed partial class AddedSummaryToJobs : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddedLatLonPropToContractorModel));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddedSummaryToJobs));
         
         string IMigrationMetadata.Id
         {
-            get { return "201905162159380_AddedLatLonPropToContractorModel"; }
+            get { return "201905171341435_AddedSummaryToJobs"; }
         }
         
         string IMigrationMetadata.Source
