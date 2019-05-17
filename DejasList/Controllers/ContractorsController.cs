@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -69,7 +70,7 @@ namespace DejasList.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ContractorId,FirstName,LastName,Address,City,Zipcode,State")] Contractor contractor)
+        public ActionResult Create([Bind(Include = "ContractorId,FirstName,LastName,Address,City,Zipcode,State,SocialNumber")] Contractor contractor)
         {
             if (ModelState.IsValid)
             {
@@ -79,6 +80,7 @@ namespace DejasList.Controllers
                 geocode.SendRequest(address);
                 contractor.Lat = geocode.latitude;
                 contractor.Lng = geocode.longitude;
+                UpdateDates(contractor);
                 db.Contractors.Add(contractor);
                 db.SaveChanges();
                 return RedirectToAction("Details", new { id = contractor.ContractorId });
@@ -109,7 +111,7 @@ namespace DejasList.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ContractorId,FirstName,LastName,Address,City,Zipcode,State")] Contractor contractor)
+        public ActionResult Edit([Bind(Include = "ContractorId,FirstName,LastName,Address,City,Zipcode,State,SocialNumber")] Contractor contractor)
         {
             if (ModelState.IsValid)
             {
@@ -146,6 +148,15 @@ namespace DejasList.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        public void UpdateDates(Contractor contractor)
+        {
+            if (contractor.DateOfBirth< SqlDateTime.MinValue.Value)
+            {
+                contractor.DateOfBirth = SqlDateTime.MinValue.Value;
+            }
+        }
+
 
         protected override void Dispose(bool disposing)
         {

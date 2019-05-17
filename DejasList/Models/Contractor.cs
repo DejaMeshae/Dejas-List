@@ -17,8 +17,16 @@ namespace DejasList.Models
         public string City { get; set; }
         public string Zipcode { get; set; }
         public string State { get; set; }
+        [DisplayFormat(DataFormatString = "{0:###-##-####}", ApplyFormatInEditMode = true)]
+        [RegularExpression(@"\d{9}", ErrorMessage ="Needs to be nine digits")]
+        public string SocialNumber { get; set; }
+        [Display(Name = "Date of Birth")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}",ApplyFormatInEditMode=true)]
+        public DateTime DateOfBirth { get; set; }
         public string Lat { get; set; }
         public string Lng { get; set; }
+        public bool Background { get; set; }
 
         public IEnumerable<Jobs> Jobs { get; set; }
 

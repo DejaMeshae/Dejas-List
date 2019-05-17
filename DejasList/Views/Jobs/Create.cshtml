@@ -10,61 +10,70 @@
 {
     @Html.AntiForgeryToken()
     
-    <div class="form-horizontal">
-        <h4>Jobs</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.TypeOfProject, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @{
-                    <select class="form-control" id="Type" name = "TypeOfProject">
-                        <option value="Remodel">Remodel</option>
-                        <option value="Repair">Repair</option>
-                        <option value="Installation">Installation</option>
-                    </select>
-                }
-        @*@Html.ValidationMessageFor(model => model.TypeOfProject, "", new { @class = "text-danger" })*@
-            </div>
+<div class="form-horizontal">
+    <h4>Jobs</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.TypeOfProject, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @{
+                <select class="form-control" id="Type" name="TypeOfProject">
+                    <option value="Remodel">Remodel</option>
+                    <option value="Repair">Repair</option>
+                    <option value="Installation">Installation</option>
+                </select>
+            }
+            @*@Html.ValidationMessageFor(model => model.TypeOfProject, "", new { @class = "text-danger" })*@
         </div>
+    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.SizeOfProject, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                    @{
-                        <select class="form-control" id="Size" name="SizeOfProject">
-                            <option value="Small">Small</option>
-                            <option value="Medium">Medium</option>
-                            <option value="Large">Large</option>
-                        </select>
-                    }
-                    @*@Html.ValidationMessageFor(model => model.SizeOfProject, "", new { @class = "text-danger" })*@
-                </div>
-            </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Budget, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @{ 
-                    <select class="form-control" id="BudgetRange" name="Budget">
-                        <option value="$0-$500">$0-$500</option>
-                        <option value="$501-1000">$501-1000</option>
-                        <option value="$1001+">$1001+</option>
-                    </select>
-                }
-
-                @*@Html.ValidationMessageFor(model => model.Budget, "", new { @class = "text-danger" })*@
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.SizeOfProject, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @{
+                <select class="form-control" id="Size" name="SizeOfProject">
+                    <option value="Small">Small</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Large">Large</option>
+                </select>
+            }
+            @*@Html.ValidationMessageFor(model => model.SizeOfProject, "", new { @class = "text-danger" })*@
         </div>
-        <div class="row mb-2">
-            <input class="form-control"
-                   id="jobSummary"
-                   name="myTextBox"
-                   type="text"
-                   placeholder="Enter a brief summary about your job" />
-        </div>
+    </div>
 
-        @*<div class="form-group">
+    <div class="form-group">
+        @Html.LabelFor(model => model.Budget, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @{
+                <select class="form-control" id="BudgetRange" name="Budget">
+                    <option value="$0-$500">$0-$500</option>
+                    <option value="$501-1000">$501-1000</option>
+                    <option value="$1001+">$1001+</option>
+                </select>
+            }
+
+            @*@Html.ValidationMessageFor(model => model.Budget, "", new { @class = "text-danger" })*@
+        </div>
+    </div>
+    @*<div class="row mb-2">
+        <input class="form-control"
+               id="jobSummary"
+               name="myTextBox"
+               type="text"
+               placeholder="Enter a brief summary about your job" />
+    </div>*@
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Summary, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Summary, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Summary, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    @*<div class="form-group">
             @Html.LabelFor(model => model.ClientId, "ClientId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("ClientId", null, htmlAttributes: new { @class = "form-control" })
@@ -80,12 +89,12 @@
             </div>
         </div>*@
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
         </div>
     </div>
+</div>
 }
 
 <div>

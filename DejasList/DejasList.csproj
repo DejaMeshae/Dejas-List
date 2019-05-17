@@ -215,7 +215,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\APIKeys.cs" />
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\ContractorsController.cs" />
     <Compile Include="Controllers\GeoCodeController.cs" />
@@ -227,29 +226,21 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201905161552463_InitialMigrate.cs" />
-    <Compile Include="Migrations\201905161552463_InitialMigrate.Designer.cs">
-      <DependentUpon>201905161552463_InitialMigrate.cs</DependentUpon>
+    <Compile Include="Migrations\201905171334511_FirstMigration.cs" />
+    <Compile Include="Migrations\201905171334511_FirstMigration.Designer.cs">
+      <DependentUpon>201905171334511_FirstMigration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201905161757584_AddedJobList.cs" />
-    <Compile Include="Migrations\201905161757584_AddedJobList.Designer.cs">
-      <DependentUpon>201905161757584_AddedJobList.cs</DependentUpon>
+    <Compile Include="Migrations\201905171341435_AddedSummaryToJobs.cs" />
+    <Compile Include="Migrations\201905171341435_AddedSummaryToJobs.Designer.cs">
+      <DependentUpon>201905171341435_AddedSummaryToJobs.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201905162019031_TookOffConstructorFK.cs" />
-    <Compile Include="Migrations\201905162019031_TookOffConstructorFK.Designer.cs">
-      <DependentUpon>201905162019031_TookOffConstructorFK.cs</DependentUpon>
+    <Compile Include="Migrations\201905171545257_SSN.cs" />
+    <Compile Include="Migrations\201905171545257_SSN.Designer.cs">
+      <DependentUpon>201905171545257_SSN.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201905162147288_ChangedPropertyOfBudget.cs" />
-    <Compile Include="Migrations\201905162147288_ChangedPropertyOfBudget.Designer.cs">
-      <DependentUpon>201905162147288_ChangedPropertyOfBudget.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905162158154_AddedLatLonPropToClientModel.cs" />
-    <Compile Include="Migrations\201905162158154_AddedLatLonPropToClientModel.Designer.cs">
-      <DependentUpon>201905162158154_AddedLatLonPropToClientModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905162159380_AddedLatLonPropToContractorModel.cs" />
-    <Compile Include="Migrations\201905162159380_AddedLatLonPropToContractorModel.Designer.cs">
-      <DependentUpon>201905162159380_AddedLatLonPropToContractorModel.cs</DependentUpon>
+    <Compile Include="Migrations\201905171553330_test.cs" />
+    <Compile Include="Migrations\201905171553330_test.Designer.cs">
+      <DependentUpon>201905171553330_test.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -257,6 +248,7 @@
     <Compile Include="Models\Contractor.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Jobs.cs" />
+    <Compile Include="Models\JobsViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -356,23 +348,17 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201905161552463_InitialMigrate.resx">
-      <DependentUpon>201905161552463_InitialMigrate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201905171334511_FirstMigration.resx">
+      <DependentUpon>201905171334511_FirstMigration.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905161757584_AddedJobList.resx">
-      <DependentUpon>201905161757584_AddedJobList.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201905171341435_AddedSummaryToJobs.resx">
+      <DependentUpon>201905171341435_AddedSummaryToJobs.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905162019031_TookOffConstructorFK.resx">
-      <DependentUpon>201905162019031_TookOffConstructorFK.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201905171545257_SSN.resx">
+      <DependentUpon>201905171545257_SSN.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905162147288_ChangedPropertyOfBudget.resx">
-      <DependentUpon>201905162147288_ChangedPropertyOfBudget.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905162158154_AddedLatLonPropToClientModel.resx">
-      <DependentUpon>201905162158154_AddedLatLonPropToClientModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905162159380_AddedLatLonPropToContractorModel.resx">
-      <DependentUpon>201905162159380_AddedLatLonPropToContractorModel.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201905171553330_test.resx">
+      <DependentUpon>201905171553330_test.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

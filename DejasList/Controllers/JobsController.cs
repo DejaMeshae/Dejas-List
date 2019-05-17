@@ -18,11 +18,12 @@ namespace DejasList.Controllers
         // GET: Jobs
         public ActionResult Index()
         {
-            if (this.User.IsInRole("Client"))
+            if (!User.IsInRole("Client"))
             {
+               
                 return RedirectToAction("ClientJobList");
             }
-            else if (this.User.IsInRole("Contractor"))
+            else if (!User.IsInRole("Contractor"))
             {
                 return RedirectToAction("ContractorJobList");
             }
@@ -72,7 +73,7 @@ namespace DejasList.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "JobsId,TypeOfProject,SizeOfProject,Budget")] Jobs jobs)
+        public ActionResult Create([Bind(Include = "JobsId,TypeOfProject,SizeOfProject,Budget,Summary")] Jobs jobs)
         {
             if (ModelState.IsValid)
             {
@@ -112,7 +113,7 @@ namespace DejasList.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "JobsId,TypeOfProject,SizeOfProject,Budget,ClientId,ContractorId")] Jobs jobs)
+        public ActionResult Edit([Bind(Include = "JobsId,TypeOfProject,SizeOfProject,Budget,Summary,ClientId,ContractorId")] Jobs jobs)
         {
             if (ModelState.IsValid)
             {
