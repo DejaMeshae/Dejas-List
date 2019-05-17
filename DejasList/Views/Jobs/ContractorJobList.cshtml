@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<DejasList.Models.Jobs>
 
 @{
-    ViewBag.Title = "JobList";
+    ViewBag.Title = "ContractorJobList";
 }
 
-<h2>JobList</h2>
+<h2>ContractorJobList</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -23,6 +23,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Budget)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContractorId)
+        </th>
         <th></th>
     </tr>
 
@@ -39,6 +42,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Budget)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContractorId)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.JobsId }) |
