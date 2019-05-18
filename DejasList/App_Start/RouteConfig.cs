@@ -18,6 +18,24 @@ namespace DejasList
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+            routes.MapRoute( 
+                "NavbarDetails",
+                "Contractors/Details",
+                new
+                {
+                    controller = "Contractors",
+                    action = "NavbarDetails",
+                });
+
+            routes.MapRoute(
+                 "ActualDetails",
+                 "Contractors/Details/{searchterm}",
+                 new
+                 {
+                     controller = "Contractors",
+                     action = "Details",
+                     searchterm = UrlParameter.Optional
+                 });
         }
     }
 }

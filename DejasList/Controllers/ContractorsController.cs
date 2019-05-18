@@ -29,35 +29,44 @@ namespace DejasList.Controllers
         }
 
         public IQueryable<Contractor>GetContractors()
-            {
-            var contractors = from w in db.Contractors
-                              select new Contractor()
-                              {
-                                  ApplicationUserId = w.ApplicationUserId,
-                                  FirstName = w.FirstName,
-                                  LastName = w.LastName,
-                                  Address = w.Address,
-                                  City = w.City,
-                                  State = w.State,
-                                  ContractorId = w.ContractorId,
-                                  Zipcode = w.Zipcode
-                              };
-                               return contractors;
-            }
+        {
+        var contractors = from w in db.Contractors
+                          select new Contractor()
+                          {
+                              ApplicationUserId = w.ApplicationUserId,
+                              FirstName = w.FirstName,
+                              LastName = w.LastName,
+                              Address = w.Address,
+                              City = w.City,
+                              State = w.State,
+                              ContractorId = w.ContractorId,
+                              Zipcode = w.Zipcode
+                          };
+                           return contractors;
+        }
 
-    // GET: Contractors/Details/5
-    public ActionResult Details(int? id)
+        // GET: Contractors/Details
+        [ActionName("NavbarDetails")]
+        public ActionResult Details()
+        {
+            string id = User.Identity.GetUserId();
+            Contractor model = db.Contractors.Where(m => m.ApplicationUserId == id).FirstOrDefault();
+            return View("Details", model);
+        }
+
+        // GET: Contractors/Details/5
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Contractor contractor = db.Contractors.Where(c => c.ContractorId == id).Include(a => a.ApplicationUser).FirstOrDefault();
-            if (contractor == null)
+            Contractor model = db.Contractors.Where(c => c.ContractorId == id).Include(a => a.ApplicationUser).FirstOrDefault();
+            if (model == null)
             {
                 return HttpNotFound();
             }
-            return View(contractor);
+            return View("Details", model);
         }
 
         // GET: Contractors/Create
@@ -109,6 +118,8 @@ namespace DejasList.Controllers
             return View(job);
         }
 
+        
+
         // GET: Contractors/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -116,25 +127,35 @@ namespace DejasList.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Contractor contractor = db.Contractors.Find(id);
+            Contractor contractor = db.Contractors.Where(c => c.ContractorId == id).Include(a => a.ApplicationUser).FirstOrDefault();
             if (contractor == null)
             {
                 return HttpNotFound();
             }
             ViewBag.ApplicationUserId = new SelectList(db.Users, "Id", "Email", contractor.ApplicationUserId);//Will likley not need this line of code delete in the end *DA
-            return View(contractor);
+            return View("Edit", contractor);
         }
+
+        
 
         // POST: Contractors/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ContractorId,FirstName,LastName,Address,City,Zipcode,State,SocialNumber")] Contractor contractor)
+        public ActionResult Edit([Bind(Include = "ContractorId,FirstName,LastName,Address,City,Zipcode,State,SocialNumber,DateOfBirth")] Contractor contractor)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(contractor).State = EntityState.Modified;
+                contractor.ApplicationUserId = User.Identity.GetUserId();
+                string address = (contractor.Address + "+" + contractor.City + "+" + contractor.State + "+" + contractor.Zipcode);
+                GeocodeController geocode = new GeocodeController();
+                geocode.SendRequest(address);
+                contractor.Lat = geocode.latitude;
+                contractor.Lng = geocode.longitude;
+                UpdateDates(contractor);
+                db.Contractors.Add(contractor);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

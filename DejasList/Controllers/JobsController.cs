@@ -61,6 +61,21 @@ namespace DejasList.Controllers
             return View(jobs);
         }
 
+        // GET: Jobs/Details/5
+        public ActionResult ContractorDetails(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Jobs jobs = db.Jobs.Find(id);
+            if (jobs == null)
+            {
+                return HttpNotFound();
+            }
+            return View(jobs);
+        }
+
         // GET: Jobs/Create
         public ActionResult Create()
         {
