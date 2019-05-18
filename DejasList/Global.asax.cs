@@ -8,8 +8,13 @@ using System.Web.Routing;
 
 namespace DejasList
 {
+   
     public class MvcApplication : System.Web.HttpApplication
     {
+        public static void RegisterRoutes(RouteCollection routes)
+        {
+            
+        }
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
@@ -17,5 +22,7 @@ namespace DejasList
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
+
+        
     }
 }

@@ -1,0 +1,91 @@
+﻿@model DejasList.Models.Jobs
+
+@{
+    ViewBag.Title = "ContractorDetails";
+}
+
+<h2>ContractorDetails</h2>
+
+<div>
+    <h4>Jobs</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Client.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Client.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TypeOfProject)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TypeOfProject)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SizeOfProject)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SizeOfProject)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Budget)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Budget)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Summary)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Summary)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lng)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lng)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContractorId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContractorId)
+        </dd>
+
+    </dl>
+</div>
+
+<div class="row mb-2">
+        <input class="form-control"
+               id="jobSummary"
+               name="myTextBox"
+               type="text"
+               placeholder="Enter your message here..." />
+</div>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.JobsId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

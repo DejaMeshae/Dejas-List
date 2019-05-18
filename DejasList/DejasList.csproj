@@ -323,14 +323,13 @@
     <Content Include="Views\Jobs\Edit.cshtml" />
     <Content Include="Views\Jobs\Index.cshtml" />
     <Content Include="Views\Jobs.cshtml" />
-    <Content Include="Views\Jobs\ClientJobList.cshtml" />
     <Content Include="Views\Client\CreateJob.cshtml" />
-    <Content Include="Views\Jobs\ContractorJobList.cshtml" />
     <Content Include="Views\Client\_ViewStart.cshtml" />
     <Content Include="Views\Contractors\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_ContractorLayout.cshtml" />
     <Content Include="Views\Shared\_ClientLayout.cshtml" />
     <Content Include="Views\Contractors\SubmitInterest.cshtml" />
+    <Content Include="Views\Jobs\ContractorDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
