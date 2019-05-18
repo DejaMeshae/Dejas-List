@@ -19,11 +19,11 @@ namespace DejasList.Controllers
         // GET: 
         public ActionResult Index()
         {
-            //var ClientLoggedIn = User.Identity.GetUserId();
-            //var clients = db.Clients.Where(e => e.ApplicationUserId == ClientLoggedIn).Include(c => c.ApplicationUser).FirstOrDefault();
-            //var client = Details(clients.ClientId);
+            var ClientLoggedIn = User.Identity.GetUserId();
+            var client = db.Clients.Where(e => e.ApplicationUserId == ClientLoggedIn).Include(c => c.ApplicationUser).FirstOrDefault();
+            
             JobsViewModel model = new JobsViewModel();
-            model.JobList = db.Jobs.ToList();
+            model.JobList = db.Jobs.Where(j => j.ClientId == client.ClientId).ToList();
             return View(model);
         }
 
