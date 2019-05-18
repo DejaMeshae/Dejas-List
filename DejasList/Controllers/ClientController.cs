@@ -77,7 +77,7 @@ namespace DejasList.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ClientId,FirstName,LastName,Address,City,State,ZipCode")] Client client)
+        public ActionResult Create([Bind(Include = "ClientId,FirstName,LastName,Address,City,State,ZipCode, Email, Phone Number")] Client client)
         {
             if (ModelState.IsValid)
             {

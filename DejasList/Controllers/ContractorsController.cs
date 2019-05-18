@@ -116,7 +116,7 @@ namespace DejasList.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Contractor contractor = db.Contractors.Find(id);
+            Contractor contractor = db.Contractors.Where(c => c.ContractorId == id).Include(a => a.ApplicationUser).FirstOrDefault();
             if (contractor == null)
             {
                 return HttpNotFound();
@@ -130,11 +130,19 @@ namespace DejasList.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ContractorId,FirstName,LastName,Address,City,Zipcode,State,SocialNumber")] Contractor contractor)
+        public ActionResult Edit([Bind(Include = "ContractorId,FirstName,LastName,Address,City,Zipcode,State,SocialNumber,DateOfBirth")] Contractor contractor)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(contractor).State = EntityState.Modified;
+                contractor.ApplicationUserId = User.Identity.GetUserId();
+                string address = (contractor.Address + "+" + contractor.City + "+" + contractor.State + "+" + contractor.Zipcode);
+                GeocodeController geocode = new GeocodeController();
+                geocode.SendRequest(address);
+                contractor.Lat = geocode.latitude;
+                contractor.Lng = geocode.longitude;
+                UpdateDates(contractor);
+                db.Contractors.Add(contractor);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
