@@ -230,6 +230,14 @@
     <Compile Include="Migrations\201905172348079_init.Designer.cs">
       <DependentUpon>201905172348079_init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905180134302_updated jobsviewmodel.cs" />
+    <Compile Include="Migrations\201905180134302_updated jobsviewmodel.Designer.cs">
+      <DependentUpon>201905180134302_updated jobsviewmodel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905180509392_added messaging.cs" />
+    <Compile Include="Migrations\201905180509392_added messaging.Designer.cs">
+      <DependentUpon>201905180509392_added messaging.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Client.cs" />
@@ -318,6 +326,11 @@
     <Content Include="Views\Jobs\ClientJobList.cshtml" />
     <Content Include="Views\Client\CreateJob.cshtml" />
     <Content Include="Views\Jobs\ContractorJobList.cshtml" />
+    <Content Include="Views\Client\_ViewStart.cshtml" />
+    <Content Include="Views\Contractors\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_ContractorLayout.cshtml" />
+    <Content Include="Views\Shared\_ClientLayout.cshtml" />
+    <Content Include="Views\Contractors\SubmitInterest.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -338,6 +351,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201905172348079_init.resx">
       <DependentUpon>201905172348079_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905180134302_updated jobsviewmodel.resx">
+      <DependentUpon>201905180134302_updated jobsviewmodel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905180509392_added messaging.resx">
+      <DependentUpon>201905180509392_added messaging.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

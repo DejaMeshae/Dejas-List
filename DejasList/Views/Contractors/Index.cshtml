@@ -1,4 +1,4 @@
-﻿@model IEnumerable<DejasList.Models.Contractor>
+﻿@model DejasList.Models.JobsViewModel
 
 @{
     ViewBag.Title = "Index";
@@ -6,67 +6,61 @@
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+
+<table class="col-md-12" align="center">
     <tr>
-        @*<th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>*@
         <th>
-            @Html.DisplayNameFor(model => model.FirstName)
+            <h4>
+                Size Of Project
+            </h4>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LastName)
+            <h4>
+                Type of Project
+            </h4>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Address)
+            <h4>
+                Budget
+            </h4>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.City)
+            <h4>
+                Job Summary
+            </h4>
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Zipcode)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.State)
-        </th>
-        <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ApplicationUser.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Address)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.City)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Zipcode)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.State)
-        </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>*@
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ContractorId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ContractorId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ContractorId })
-        </td>
-    </tr>
-}
+
+    @foreach (var item in Model.JobList)
+    {
+        <tr>
+            <td>
+                <h4>
+                    @Html.DisplayFor(Model => item.SizeOfProject)
+                </h4>
+            </td>
+            <td>
+                <h4>
+                    @Html.DisplayFor(Model => item.TypeOfProject)
+                </h4>
+            </td>
+            <td>
+                <h4>
+                    @Html.DisplayFor(Model => item.Budget)
+                </h4>
+            </td>
+            <td>
+                <h4>
+                    @Html.DisplayFor(Model => item.Summary)
+                </h4>
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", "Jobs", new { id = item.JobsId }, item.JobsId) |
+                @Html.ActionLink("Submit Interest", "SubmitInterest", "Contractors", new { id = item.JobsId }, item.JobsId)
+            </td>
+        </tr>
+    }
 
 </table>
+

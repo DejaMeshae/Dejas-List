@@ -19,10 +19,12 @@ namespace DejasList.Controllers
         // GET: 
         public ActionResult Index()
         {
-            var ClientLoggedIn = User.Identity.GetUserId();
-            var clients = db.Clients.Where(e => e.ApplicationUserId == ClientLoggedIn).Include(c => c.ApplicationUser).FirstOrDefault();
-            var client = Details(clients.ClientId);
-            return View(client);
+            //var ClientLoggedIn = User.Identity.GetUserId();
+            //var clients = db.Clients.Where(e => e.ApplicationUserId == ClientLoggedIn).Include(c => c.ApplicationUser).FirstOrDefault();
+            //var client = Details(clients.ClientId);
+            JobsViewModel model = new JobsViewModel();
+            model.JobList = db.Jobs.ToList();
+            return View(model);
         }
 
 
@@ -95,19 +97,11 @@ namespace DejasList.Controllers
         }
 
         // GET:Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit()
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Client clients= db.Clients.Find(id);
-            if (clients == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.UserId = new SelectList(db.Users, "UserId", "UserName", clients.ApplicationUserId);
-            return View(clients);
+            string id = User.Identity.GetUserId();
+            Client model = db.Clients.Where(m => m.ApplicationUserId == id).FirstOrDefault();
+            return View(model);
         }
 
         // POST:Edit/5

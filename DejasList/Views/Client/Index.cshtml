@@ -1,4 +1,4 @@
-﻿@model IEnumerable<DejasList.Models.Client>
+﻿@model DejasList.Models.JobsViewModel
 
 @{
     ViewBag.Title = "Index";
@@ -7,65 +7,60 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", "Jobs")
 </p>
-<table class="table">
+<table class="col-md-12" align="center">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.ApplicationUser.Email)
+            <h4>
+                Size Of Project
+            </h4>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FirstName)
+            <h4>
+                Type of Project
+            </h4>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LastName)
+            <h4>
+                Budget
+            </h4>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Address)
+            <h4>
+                Job Summary
+            </h4>
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.City)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Zipcode)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.State)
-        </th>
-        <th></th>
     </tr>
+    
 
-    @foreach (var item in Model)
+    @foreach (var item in Model.JobList)
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.ApplicationUser.Email)
+                <h4>
+                    @Html.DisplayFor(Model => item.SizeOfProject)
+                </h4>
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
+                <h4>
+                    @Html.DisplayFor(Model => item.TypeOfProject)
+                </h4>
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.LastName)
+                <h4>
+                    @Html.DisplayFor(Model => item.Budget)
+                </h4>
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Address)
+                <h4>
+                    @Html.DisplayFor(Model => item.Summary)
+                </h4>
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.City)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Zipcode)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.State)
-            </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>*@
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ClientId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ClientId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ClientId })
+                @Html.ActionLink("Edit", "Edit", "Jobs", new { id = item.JobsId }, item.JobsId) |
+                @Html.ActionLink("Details", "Details", "Jobs", new { id = item.JobsId }, item.JobsId) |
+                @Html.ActionLink("Delete", "Delete", "Jobs", new { id = item.JobsId }, item.JobsId)
             </td>
         </tr>
     }
