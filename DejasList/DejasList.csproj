@@ -208,13 +208,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="APIKeys.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\APIKeys.cs" />
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\ContractorsController.cs" />
     <Compile Include="Controllers\GeoCodeController.cs" />
@@ -226,29 +226,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201905171334511_FirstMigration.cs" />
-    <Compile Include="Migrations\201905171334511_FirstMigration.Designer.cs">
-      <DependentUpon>201905171334511_FirstMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905171341435_AddedSummaryToJobs.cs" />
-    <Compile Include="Migrations\201905171341435_AddedSummaryToJobs.Designer.cs">
-      <DependentUpon>201905171341435_AddedSummaryToJobs.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905171545257_SSN.cs" />
-    <Compile Include="Migrations\201905171545257_SSN.Designer.cs">
-      <DependentUpon>201905171545257_SSN.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905171553330_test.cs" />
-    <Compile Include="Migrations\201905171553330_test.Designer.cs">
-      <DependentUpon>201905171553330_test.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905171838513_newregistar.cs" />
-    <Compile Include="Migrations\201905171838513_newregistar.Designer.cs">
-      <DependentUpon>201905171838513_newregistar.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905171939286_latLng.cs" />
-    <Compile Include="Migrations\201905171939286_latLng.Designer.cs">
-      <DependentUpon>201905171939286_latLng.cs</DependentUpon>
+    <Compile Include="Migrations\201905172348079_init.cs" />
+    <Compile Include="Migrations\201905172348079_init.Designer.cs">
+      <DependentUpon>201905172348079_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -356,23 +336,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201905171334511_FirstMigration.resx">
-      <DependentUpon>201905171334511_FirstMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905171341435_AddedSummaryToJobs.resx">
-      <DependentUpon>201905171341435_AddedSummaryToJobs.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905171545257_SSN.resx">
-      <DependentUpon>201905171545257_SSN.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905171553330_test.resx">
-      <DependentUpon>201905171553330_test.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905171838513_newregistar.resx">
-      <DependentUpon>201905171838513_newregistar.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905171939286_latLng.resx">
-      <DependentUpon>201905171939286_latLng.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201905172348079_init.resx">
+      <DependentUpon>201905172348079_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
