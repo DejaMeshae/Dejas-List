@@ -208,13 +208,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="APIKeys.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\APIKeys.cs" />
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\ContractorsController.cs" />
     <Compile Include="Controllers\GeoCodeController.cs" />
@@ -226,17 +226,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201905172348079_init.cs" />
-    <Compile Include="Migrations\201905172348079_init.Designer.cs">
-      <DependentUpon>201905172348079_init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905180134302_updated jobsviewmodel.cs" />
-    <Compile Include="Migrations\201905180134302_updated jobsviewmodel.Designer.cs">
-      <DependentUpon>201905180134302_updated jobsviewmodel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905180509392_added messaging.cs" />
-    <Compile Include="Migrations\201905180509392_added messaging.Designer.cs">
-      <DependentUpon>201905180509392_added messaging.cs</DependentUpon>
+    <Compile Include="Migrations\201905181852399_new.cs" />
+    <Compile Include="Migrations\201905181852399_new.Designer.cs">
+      <DependentUpon>201905181852399_new.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -348,14 +340,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201905172348079_init.resx">
-      <DependentUpon>201905172348079_init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905180134302_updated jobsviewmodel.resx">
-      <DependentUpon>201905180134302_updated jobsviewmodel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905180509392_added messaging.resx">
-      <DependentUpon>201905180509392_added messaging.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201905181852399_new.resx">
+      <DependentUpon>201905181852399_new.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -3,7 +3,7 @@ namespace DejasList.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class init : DbMigration
+    public partial class _new : DbMigration
     {
         public override void Up()
         {
@@ -124,6 +124,21 @@ namespace DejasList.Migrations
                 .Index(t => t.ClientId);
             
             CreateTable(
+                "dbo.Messages",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        _Message = c.String(),
+                        ContractorId = c.Int(nullable: false),
+                        Jobs_JobsId = c.Int(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Contractors", t => t.ContractorId, cascadeDelete: true)
+                .ForeignKey("dbo.Jobs", t => t.Jobs_JobsId)
+                .Index(t => t.ContractorId)
+                .Index(t => t.Jobs_JobsId);
+            
+            CreateTable(
                 "dbo.AspNetRoles",
                 c => new
                     {
@@ -138,6 +153,8 @@ namespace DejasList.Migrations
         public override void Down()
         {
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
+            DropForeignKey("dbo.Messages", "Jobs_JobsId", "dbo.Jobs");
+            DropForeignKey("dbo.Messages", "ContractorId", "dbo.Contractors");
             DropForeignKey("dbo.Jobs", "ClientId", "dbo.Clients");
             DropForeignKey("dbo.Contractors", "ApplicationUserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.Clients", "ApplicationUserId", "dbo.AspNetUsers");
@@ -145,6 +162,8 @@ namespace DejasList.Migrations
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
+            DropIndex("dbo.Messages", new[] { "Jobs_JobsId" });
+            DropIndex("dbo.Messages", new[] { "ContractorId" });
             DropIndex("dbo.Jobs", new[] { "ClientId" });
             DropIndex("dbo.Contractors", new[] { "ApplicationUserId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
@@ -154,6 +173,7 @@ namespace DejasList.Migrations
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
             DropIndex("dbo.Clients", new[] { "ApplicationUserId" });
             DropTable("dbo.AspNetRoles");
+            DropTable("dbo.Messages");
             DropTable("dbo.Jobs");
             DropTable("dbo.Contractors");
             DropTable("dbo.AspNetUserRoles");
