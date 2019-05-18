@@ -120,7 +120,7 @@ namespace DejasList.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Jobs jobs = db.Jobs.Find(id);
+            Jobs jobs = db.Jobs.Where(j => j.JobsId == id).FirstOrDefault();
             if (jobs == null)
             {
                 return HttpNotFound();
@@ -135,13 +135,13 @@ namespace DejasList.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "JobsId,TypeOfProject,SizeOfProject,Budget,Summary,ClientId,ContractorId")] Jobs jobs)
+        public ActionResult Edit([Bind(Include = "JobsId,TypeOfProject,SizeOfProject,Budget,Summary,ClientId")] Jobs jobs)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(jobs).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Client");
             }
             ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "FirstName", jobs.ClientId);
             ViewBag.ContractorId = new SelectList(db.Contractors, "ContractorId", "FirstName", jobs.ContractorId);

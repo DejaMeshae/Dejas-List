@@ -238,6 +238,14 @@
     <Compile Include="Migrations\201905180509392_added messaging.Designer.cs">
       <DependentUpon>201905180509392_added messaging.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905182055286_added AboutMe property to client.cs" />
+    <Compile Include="Migrations\201905182055286_added AboutMe property to client.Designer.cs">
+      <DependentUpon>201905182055286_added AboutMe property to client.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905182127590_added aboutme to contractor.cs" />
+    <Compile Include="Migrations\201905182127590_added aboutme to contractor.Designer.cs">
+      <DependentUpon>201905182127590_added aboutme to contractor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Client.cs" />
@@ -356,6 +364,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905180509392_added messaging.resx">
       <DependentUpon>201905180509392_added messaging.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905182055286_added AboutMe property to client.resx">
+      <DependentUpon>201905182055286_added AboutMe property to client.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905182127590_added aboutme to contractor.resx">
+      <DependentUpon>201905182127590_added aboutme to contractor.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -20,8 +20,7 @@ namespace DejasList.Controllers
         public ActionResult Index()
         {
             var ClientLoggedIn = User.Identity.GetUserId();
-            var client = db.Clients.Where(e => e.ApplicationUserId == ClientLoggedIn).Include(c => c.ApplicationUser).FirstOrDefault();
-            
+            var client = db.Clients.Where(e => e.ApplicationUserId == ClientLoggedIn).Include(c => c.ApplicationUser).FirstOrDefault();            
             JobsViewModel model = new JobsViewModel();
             model.JobList = db.Jobs.Where(j => j.ClientId == client.ClientId).ToList();
             return View(model);
@@ -77,7 +76,7 @@ namespace DejasList.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ClientId,FirstName,LastName,Address,City,State,ZipCode, Email, Phone Number")] Client client)
+        public ActionResult Create([Bind(Include = "ClientId,FirstName,LastName,Address,City,State,ZipCode,Email,AboutMe")] Client client)
         {
             if (ModelState.IsValid)
             {

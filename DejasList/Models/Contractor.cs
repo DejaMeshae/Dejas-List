@@ -37,10 +37,8 @@ namespace DejasList.Models
 
         public string Lng { get; set; }
 
-        //public bool Background { get; set; }
-
-        public IEnumerable<Jobs> Jobs { get; set; }
-
+        [DataType(DataType.MultilineText)]
+        public string AboutMe { get; set; }
 
         [ForeignKey("ApplicationUser")]
         public string ApplicationUserId { get; set; }
