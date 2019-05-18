@@ -3,89 +3,204 @@
 @{
     ViewBag.Title = "ContractorDetails";
 }
-
+<style>
+    /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+    #map {
+        height: 200px;
+        width: 400px;
+    }
+    /* Optional: Makes the sample page fill the window. */
+    html, body {
+        /*height: 100%;*/
+        margin: 0;
+        padding: 0;
+    }
+</style>
+@*<script src="Scripts/jquery-3.3.1.js"></script>*@
 <h2>ContractorDetails</h2>
 
 <div>
-    <h4>Jobs</h4>
+    <h4>Location</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Client.FirstName)
-        </dt>
+    <div id="map">
 
-        <dd>
-            @Html.DisplayFor(model => model.Client.FirstName)
-        </dd>
+    </div>
+    <h4>Job</h4>
+    <hr />
+    <div>
+        <script>
+            // Note: This example requires that you consent to location sharing when
+            // prompted by your browser. If you see the error "The Geolocation service
+            // failed.", it means you probably did not give permission for the browser to
+            // locate you.
+            
+            var map, infoWindow;
+            function initMap() {
+                map = new google.maps.Map(document.getElementById('map'), {
+                    center: { lat: -34.39, lng: 150.644 },
+                    zoom: 8
+                });
+                
+                infoWindow = new google.maps.InfoWindow;
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TypeOfProject)
-        </dt>
+                // Try HTML5 geolocation.
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function (position) {
+                        var pos = {
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude
+                        };
 
-        <dd>
-            @Html.DisplayFor(model => model.TypeOfProject)
-        </dd>
+                        infoWindow.setPosition(pos);
+                        infoWindow.setContent('.');
+                        infoWindow.open(map);
+                        map.setCenter(pos);
+                    }, function () {
+                        handleLocationError(true, infoWindow, map.getCenter());
+                    });
+                } else {
+                    // Browser doesn't support Geolocation
+                    handleLocationError(false, infoWindow, map.getCenter());
+                }
+                setMarkers(map);
+            }
+            
+            var beaches = [
+                ['Job', 43.016630, -88.007280, 1],
+            ];
 
-        <dt>
-            @Html.DisplayNameFor(model => model.SizeOfProject)
-        </dt>
+            function setMarkers(map) {
+                // Adds markers to the map.
 
-        <dd>
-            @Html.DisplayFor(model => model.SizeOfProject)
-        </dd>
+                // Marker sizes are expressed as a Size of X,Y where the origin of the image
+                // (0,0) is located in the top left of the image.
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Budget)
-        </dt>
+                // Origins, anchor positions and coordinates of the marker increase in the X
+                // direction to the right and in the Y direction down.
+                var image = {
+                    url: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+                    // This marker is 20 pixels wide by 32 pixels high.
+                    size: new google.maps.Size(20, 32),
+                    // The origin for this image is (0, 0).
+                    origin: new google.maps.Point(0, 0),
+                    // The anchor for this image is the base of the flagpole at (0, 32).
+                    anchor: new google.maps.Point(0, 32)
+                };
+                // Shapes define the clickable region of the icon. The type defines an HTML
+                // <area> element 'poly' which traces out a polygon as a series of X,Y points.
+                // The final coordinate closes the poly by connecting to the first coordinate.
+                var shape = {
+                    coords: [1, 1, 1, 20, 18, 20, 18, 1],
+                    type: 'poly'
+                };
+                var lat =@Model.Lat;
+                var lng =@Model.Lng;
+                
+                
+                    var marker = new google.maps.Marker({
+                        position : {
+                            lat: @Model.Lat,
+                            lng: @Model.Lng
+                        },
+                        map: map,
+                        icon: image,
+                        shape: shape,
+                        title: 'job',
+                        zIndex: 1
+                    });
+                var bounds = new google.map.LatLngBounds();
+                loc = new google.maps.LatLng(marker.position.lat(), marker.position.lng());
+                bounds.extend(loc);
+                map.fitBounds(bounds);
+                map.panToBounds(bounds);
+                
+            }
 
-        <dd>
-            @Html.DisplayFor(model => model.Budget)
-        </dd>
+            function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+                infoWindow.setPosition(pos);
+                infoWindow.setContent(browserHasGeolocation ?
+                    'Error: The Geolocation service failed.' :
+                    'Error: Your browser doesn\'t support geolocation.');
+                infoWindow.open(map);
+            }
+        </script>
+        <script async defer
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCj1wU8gh7zxSn3ARB7jSL_5iS2D28eqKA&callback=initMap">
+        </script>
+        <div class="dl-horizontal">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Summary)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Client.FirstName)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Summary)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Client.FirstName)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Lat)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.TypeOfProject)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Lat)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.TypeOfProject)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Lng)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.SizeOfProject)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Lng)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.SizeOfProject)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ContractorId)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Budget)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ContractorId)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Budget)
+            </dd>
 
-    </dl>
-</div>
+            <dt>
+                @Html.DisplayNameFor(model => model.Summary)
+            </dt>
 
-<div class="row mb-2">
+            <dd>
+                @Html.DisplayFor(model => model.Summary)
+            </dd>
+
+            
+
+
+
+        </div>
         <input class="form-control"
                id="jobSummary"
                name="myTextBox"
                type="text"
                placeholder="Enter your message here..." />
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.JobsId }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+
+    </div>
+    
+
 </div>
 
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.JobsId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
