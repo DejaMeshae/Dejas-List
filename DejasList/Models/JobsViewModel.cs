@@ -7,7 +7,7 @@ namespace DejasList.Models
 {
     public class JobsViewModel
     {
-        IEnumerable<Jobs> JobList { get; set; }
+         public List<Jobs> JobList { get; set; }        
 
     }
 }

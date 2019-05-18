@@ -88,7 +88,9 @@ namespace DejasList.Controllers
                 //db.Jobs.Add(job);
                 db.Jobs.Add(jobs);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                JobsViewModel model = new JobsViewModel();
+                model.JobList = db.Jobs.ToList();
+                return RedirectToAction("Index", "Client", model);
             }
 
             ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "FirstName", jobs.ClientId);
@@ -154,7 +156,7 @@ namespace DejasList.Controllers
             Jobs jobs = db.Jobs.Find(id);
             db.Jobs.Remove(jobs);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Client");
         }
 
         protected override void Dispose(bool disposing)

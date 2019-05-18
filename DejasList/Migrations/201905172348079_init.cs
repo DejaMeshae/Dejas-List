@@ -3,7 +3,7 @@ namespace DejasList.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class FirstMigration : DbMigration
+    public partial class init : DbMigration
     {
         public override void Up()
         {
@@ -95,6 +95,8 @@ namespace DejasList.Migrations
                         City = c.String(),
                         Zipcode = c.String(),
                         State = c.String(),
+                        SocialNumber = c.String(),
+                        DateOfBirth = c.DateTime(nullable: false),
                         Lat = c.String(),
                         Lng = c.String(),
                         ApplicationUserId = c.String(maxLength: 128),
@@ -111,6 +113,9 @@ namespace DejasList.Migrations
                         TypeOfProject = c.String(),
                         SizeOfProject = c.String(),
                         Budget = c.String(),
+                        Summary = c.String(),
+                        Lat = c.String(),
+                        Lng = c.String(),
                         ClientId = c.Int(nullable: false),
                         ContractorId = c.Int(nullable: false),
                     })

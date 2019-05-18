@@ -19,10 +19,13 @@ namespace DejasList.Controllers
         // GET: Contractors
         public ActionResult Index()
         {
-            var ContractorLoggedIn = User.Identity.GetUserId();
-            var contractors = db.Contractors.Where(e => e.ApplicationUserId == ContractorLoggedIn).Include(c => c.ApplicationUser).FirstOrDefault();
-            var contractor = Details(contractors.ContractorId);
-            return View(contractor);
+            //var id = User.Identity.GetUserId();
+            //var contractor = db.Contractors.Where(e => e.ApplicationUserId == id).Include(c => c.ApplicationUser).FirstOrDefault();
+            //var model = Details(contractor.ContractorId);
+            JobsViewModel model = new JobsViewModel();
+            model.JobList = db.Jobs.ToList();
+            return View(model); 
+            
         }
 
         public IQueryable<Contractor>GetContractors()
@@ -88,6 +91,22 @@ namespace DejasList.Controllers
 
             ViewBag.ApplicationUserId = new SelectList(db.Users, "Id", "Email", contractor.ApplicationUserId); //Will likley not need this line of code delete in the end *DA
             return View(contractor);
+        }
+
+        // GET: Contractors/Edit/5
+        public ActionResult SubmitInterest(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Jobs job = db.Jobs.Where(j => j.JobsId == id).FirstOrDefault();
+            if (job == null)
+            {
+                return HttpNotFound();
+            }
+            
+            return View(job);
         }
 
         // GET: Contractors/Edit/5

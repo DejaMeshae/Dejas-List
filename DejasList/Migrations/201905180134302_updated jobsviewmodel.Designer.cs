@@ -7,13 +7,13 @@ namespace DejasList.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class SSN : IMigrationMetadata
+    public sealed partial class updatedjobsviewmodel : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(SSN));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(updatedjobsviewmodel));
         
         string IMigrationMetadata.Id
         {
-            get { return "201905171545257_SSN"; }
+            get { return "201905180134302_updated jobsviewmodel"; }
         }
         
         string IMigrationMetadata.Source
