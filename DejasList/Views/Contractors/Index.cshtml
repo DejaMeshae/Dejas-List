@@ -6,6 +6,14 @@
 
 <h2>Index</h2>
 
+<p>
+    @*@using (Html.BeginForm())
+    {
+        <label>Budget</label>
+        @Html.DropDownList(model => model.Budget,
+        new SelectList(Model.Budget, "Budget",))
+    }*@
+</p>
 
 <table class="col-md-12" align="center">
     <tr>

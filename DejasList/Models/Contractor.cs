@@ -12,14 +12,17 @@ namespace DejasList.Models
         [Key]
         public int ContractorId { get; set; }
 
+        [Display(Name = "First Name:")]
         public string FirstName { get; set; }
 
+        [Display(Name = "Last Name:")]
         public string LastName { get; set; }
 
         public string Address { get; set; }
 
         public string City { get; set; }
 
+        [Display(Name = "Zip Code:")]
         public string Zipcode { get; set; }
 
         public string State { get; set; }

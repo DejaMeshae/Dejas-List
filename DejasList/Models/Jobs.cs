@@ -12,8 +12,10 @@ namespace DejasList.Models
         [Key]
         public int JobsId { get; set; }
 
+        [Display(Name = "Type of Project:")]
         public string TypeOfProject { get; set; }
 
+        [Display(Name = "Size of Project:")]
         public string SizeOfProject { get; set; }
 
         public string Budget { get; set; }
