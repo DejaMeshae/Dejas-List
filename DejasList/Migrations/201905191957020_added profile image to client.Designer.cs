@@ -7,13 +7,13 @@ namespace DejasList.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class addedaboutmetocontractor : IMigrationMetadata
+    public sealed partial class addedprofileimagetoclient : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(addedaboutmetocontractor));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(addedprofileimagetoclient));
         
         string IMigrationMetadata.Id
         {
-            get { return "201905182127590_added aboutme to contractor"; }
+            get { return "201905191957020_added profile image to client"; }
         }
         
         string IMigrationMetadata.Source

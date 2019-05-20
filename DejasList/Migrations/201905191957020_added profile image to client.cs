@@ -3,16 +3,16 @@ namespace DejasList.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class addedaboutmetocontractor : DbMigration
+    public partial class addedprofileimagetoclient : DbMigration
     {
         public override void Up()
         {
-            AddColumn("dbo.Contractors", "AboutMe", c => c.String());
+            AddColumn("dbo.Clients", "ProfilePhoto", c => c.Binary());
         }
         
         public override void Down()
         {
-            DropColumn("dbo.Contractors", "AboutMe");
+            DropColumn("dbo.Clients", "ProfilePhoto");
         }
     }
 }

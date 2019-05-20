@@ -1,0 +1,50 @@
+﻿@ViewBag.contractorList
+
+
+<table class="table">
+    <tr>
+        <th>
+            <h4>
+                First Name
+            </h4>
+            
+        </th>
+        <th>
+            <h4>
+                Last Name
+            </h4>
+
+        </th>        
+        <th>
+            <h4>
+                About Me
+            </h4>
+
+        </th>
+        
+        <th></th>
+    </tr>
+
+@foreach (var item in ViewBag.contractorList) {
+    <tr>
+        <td>
+            <img src="@Url.Action("UserPhotos", "Contractors" )" height="48" width="48" />
+        </td>
+        <td >
+            @item.FirstName
+        </td>
+        <td>
+            @item.LastName
+        </td>        
+        <td>
+            @item.AboutMe
+        </td>
+        
+        <td>
+            @Html.ActionLink("Message", "Message", "Contractor", new { id=item.ContractorId }) 
+            
+        </td>
+    </tr>
+}
+
+</table>

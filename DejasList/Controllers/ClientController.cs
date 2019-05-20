@@ -1,8 +1,10 @@
 ﻿using DejasList.Models;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -80,7 +82,20 @@ namespace DejasList.Controllers
         {
             if (ModelState.IsValid)
             {
+                //Add image to folder
+                // To convert the user uploaded Photo as Byte Array before save to DB
+                byte[] imageData = null;
+                if (Request.Files.Count > 0)
+                {
+                    HttpPostedFileBase poImgFile = Request.Files["ProfilePhoto"];
+
+                    using (var binary = new BinaryReader(poImgFile.InputStream))
+                    {
+                        imageData = binary.ReadBytes(poImgFile.ContentLength);
+                    }
+                }
                 client.ApplicationUserId = User.Identity.GetUserId();
+                client.ProfilePhoto = imageData;
                 string address = (client.Address + "+" + client.City + "+" + client.State + "+" + client.Zipcode);
                 GeocodeController geocode = new GeocodeController();
                 geocode.SendRequest(address);
@@ -93,6 +108,17 @@ namespace DejasList.Controllers
 
             ViewBag.UserId = new SelectList(db.Users, "UserId", "UserName", client.ApplicationUserId);
             return View(client);
+        }
+        
+        // GET:
+        public ActionResult ContractorList()
+        {
+            
+            List<Contractor> contractors = new List<Contractor>();
+            contractors = db.Contractors.ToList();
+            ViewBag.contractorList = contractors;        
+
+            return View();
         }
 
         // GET:Edit/5
@@ -108,11 +134,27 @@ namespace DejasList.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ClientId,FirstName,LastName,Address,City,State,ZipCode")] Client client)
+        public ActionResult Edit([Bind(Include = "ClientId,FirstName,LastName,Address,City,State,ZipCode,ApplicationUserId,AboutMe")] Client client)
         {
             if (ModelState.IsValid)
             {
+                byte[] imageData = null;
+                if (Request.Files.Count > 0)
+                {
+                    HttpPostedFileBase poImgFile = Request.Files["ProfilePhoto"];
+
+                    using (var binary = new BinaryReader(poImgFile.InputStream))
+                    {
+                        imageData = binary.ReadBytes(poImgFile.ContentLength);
+                    }
+                }
                 db.Entry(client).State = EntityState.Modified;
+                client.ProfilePhoto = imageData;
+                string address = (client.Address + "+" + client.City + "+" + client.State + "+" + client.Zipcode);
+                GeocodeController geocode = new GeocodeController();
+                geocode.SendRequest(address);
+                client.Lat = geocode.latitude;
+                client.Lng = geocode.longitude;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -167,6 +209,47 @@ namespace DejasList.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+        public FileContentResult UserPhotos()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                String userId = User.Identity.GetUserId();
+
+                if (userId == null)
+                {
+                    string fileName = HttpContext.Server.MapPath(@"~/Images/noImg.png");
+
+                    byte[] imageData = null;
+                    FileInfo fileInfo = new FileInfo(fileName);
+                    long imageFileLength = fileInfo.Length;
+                    FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+                    BinaryReader br = new BinaryReader(fs);
+                    imageData = br.ReadBytes((int)imageFileLength);
+
+                    return File(imageData, "image/png");
+
+                }
+                // to get the user details to load user Image
+                var db = HttpContext.GetOwinContext().Get<ApplicationDbContext>();
+                var user = db.Users.Where(x => x.Id == userId).FirstOrDefault();
+                var client = db.Clients.Where(c => c.ApplicationUserId == user.Id).FirstOrDefault();
+
+                return new FileContentResult(client.ProfilePhoto, "image/jpeg");
+            }
+            else
+            {
+                string fileName = HttpContext.Server.MapPath(@"~/Images/noImg.png");
+
+                byte[] imageData = null;
+                FileInfo fileInfo = new FileInfo(fileName);
+                long imageFileLength = fileInfo.Length;
+                FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+                BinaryReader br = new BinaryReader(fs);
+                imageData = br.ReadBytes((int)imageFileLength);
+                return File(imageData, "image/png");
+
+            }
         }
     }
 }

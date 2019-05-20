@@ -21,12 +21,12 @@
 <h2>ContractorDetails</h2>
 
 <div>
-    <h4>Location</h4>
+    <h2>@Html.DisplayFor(model => model.Name)</h2>
     <hr />
     <div id="map">
 
     </div>
-    <h4>Job</h4>
+    
     <hr />
     <div>
         <script>
@@ -34,14 +34,14 @@
             // prompted by your browser. If you see the error "The Geolocation service
             // failed.", it means you probably did not give permission for the browser to
             // locate you.
-            
+
             var map, infoWindow;
             function initMap() {
                 map = new google.maps.Map(document.getElementById('map'), {
                     center: { lat: -34.39, lng: 150.644 },
                     zoom: 8
                 });
-                
+
                 infoWindow = new google.maps.InfoWindow;
 
                 // Try HTML5 geolocation.
@@ -53,7 +53,7 @@
                         };
 
                         infoWindow.setPosition(pos);
-                        infoWindow.setContent('.');
+                        infoWindow.setContent('Your are Here.');
                         infoWindow.open(map);
                         map.setCenter(pos);
                     }, function () {
@@ -64,8 +64,45 @@
                     handleLocationError(false, infoWindow, map.getCenter());
                 }
                 setMarkers(map);
+                var _lat = @Model.Lat
+                var _lng = @Model.Lng  
+                //var service = new google.maps.DistanceMatrixService;
+                //service.getDistanceMatrix({
+                //    origins: [{ lat: position.coords.latitude, lng: position.coords.longitude }],
+                //    destinations: [{ lat: _lat, lng: _lng }],
+                //    travelMode: 'DRIVING',
+                //    unitSystem: google.maps.UnitSystem.METRIC,
+                //    avoidHighways: false,
+                //    avoid Tolls: false
+                //}, fucntion(response, status){
+                //        if(status !== 'OK'){
+                //    alert('Error was:' + status);
+                //} else {
+                //    var originList = response.originAddresses;
+                //    var destinationList = response.destinationAddresses;
+                //    var outputDiv = document.getElementById('output');
+                //    outputDiv.innerHTML = '';
+                    
+
+                //    var showGeocodedAddressOnMap = function (asDestination) {
+                //        var icon = asDestination ? destinationIcon : originIcon;
+                //        return function (results, status) {
+                //            if (status === 'OK') {
+                //                map.fitBounds(bounds.extend(results[0].geometry.location));
+                //                markersArray.push(new google.maps.Marker({
+                //                    map: map,
+                //                    position: results[0].geometry.location,
+                //                    icon: icon
+                //                }));
+                //            } else {
+                //                alert('Geocode was not successful due to: ' + status);
+                //            }
+                //        };
+                //    }; 
+                //}
+                    
             }
-            
+
             var beaches = [
                 ['Job', 43.016630, -88.007280, 1],
             ];
@@ -96,8 +133,8 @@
                 };
                 var lat =@Model.Lat;
                 var lng =@Model.Lng;
-                
-                
+
+
                     var marker = new google.maps.Marker({
                         position : {
                             lat: @Model.Lat,
@@ -114,7 +151,7 @@
                 bounds.extend(loc);
                 map.fitBounds(bounds);
                 map.panToBounds(bounds);
-                
+
             }
 
             function handleLocationError(browserHasGeolocation, infoWindow, pos) {
@@ -124,6 +161,8 @@
                     'Error: Your browser doesn\'t support geolocation.');
                 infoWindow.open(map);
             }
+
+            
         </script>
         <script async defer
                 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCj1wU8gh7zxSn3ARB7jSL_5iS2D28eqKA&callback=initMap">
@@ -131,7 +170,7 @@
         <div class="dl-horizontal">
 
             <dt>
-                @Html.DisplayNameFor(model => model.Client.FirstName)
+                Distance
             </dt>
 
             <dd>
@@ -170,20 +209,20 @@
                 @Html.DisplayFor(model => model.Summary)
             </dd>
 
-            
-
+            @using (Html.BeginForm())
+            {
+                <div class="form-horizontal">
+                    <div class="form-group">                        
+                        <div class="col-md-10">
+                            <input type="button" value="Message Client" onclick="@("window.location.href='" + @Url.Action("Message", "Job") + "'");" />                        </div>
+                    </div>
+                </div>
+            }
 
 
         </div>
-        <input class="form-control"
-               id="jobSummary"
-               name="myTextBox"
-               type="text"
-               placeholder="Enter your message here..." />
-        <p>
-            @Html.ActionLink("Edit", "Edit", new { id = Model.JobsId }) |
-            @Html.ActionLink("Back to List", "Index")
-        </p>
+        
+        
 
     </div>
     

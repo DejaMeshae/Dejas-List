@@ -12,12 +12,20 @@ namespace DejasList.Models
         [Key]
         public int JobsId { get; set; }
 
+        [Display(Name = "Type of Job")]
         public string TypeOfProject { get; set; }
 
+        [Display(Name = "Size of Job")]
         public string SizeOfProject { get; set; }
 
+        [Display(Name = "Estimated Budget for Job")]
         public string Budget { get; set; }
 
+        [Display(Name = "Job Name")]
+        public string Name { get; set; }
+
+        [Display(Name = "Job Details")]
+        [DataType(DataType.MultilineText)]
         public string Summary { get; set; }
 
         public string Lat { get; set; }
@@ -38,6 +46,7 @@ namespace DejasList.Models
             [Key]
             public int Id { get; set; }
 
+            [DataType(DataType.MultilineText)]
             public string _Message { get; set; }
 
             [ForeignKey("Contractor")]

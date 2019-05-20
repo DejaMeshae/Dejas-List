@@ -9,6 +9,9 @@ using System.Web;
 using System.Web.Mvc;
 using DejasList.Models;
 using Microsoft.AspNet.Identity;
+using System.IO;
+using System.Configuration;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace DejasList.Controllers
 {
@@ -86,15 +89,31 @@ namespace DejasList.Controllers
         {
             if (ModelState.IsValid)
             {
-                contractor.ApplicationUserId = User.Identity.GetUserId();
+                //Add image to folder
+                // To convert the user uploaded Photo as Byte Array before save to DB
+                byte[] imageData = null;
+                if (Request.Files.Count > 0)
+                {
+                    HttpPostedFileBase poImgFile = Request.Files["ProfilePhoto"];
+
+                    using (var binary = new BinaryReader(poImgFile.InputStream))
+                    {
+                        imageData = binary.ReadBytes(poImgFile.ContentLength);
+                    }
+                }
+                contractor.ApplicationUserId = User.Identity.GetUserId();                
+                contractor.ProfilePhoto = imageData;
                 string address = (contractor.Address + "+" + contractor.City + "+" + contractor.State + "+" + contractor.Zipcode);
                 GeocodeController geocode = new GeocodeController();
                 geocode.SendRequest(address);
                 contractor.Lat = geocode.latitude;
                 contractor.Lng = geocode.longitude;
                 UpdateDates(contractor);
+                
                 db.Contractors.Add(contractor);
                 db.SaveChanges();
+                
+
                 return RedirectToAction("Details", new { id = contractor.ContractorId });
             }
 
@@ -205,6 +224,48 @@ namespace DejasList.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public FileContentResult UserPhotos()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                String userId = User.Identity.GetUserId();
+
+                if (userId == null)
+                {
+                    string fileName = HttpContext.Server.MapPath(@"~/Images/noImg.png");
+
+                    byte[] imageData = null;
+                    FileInfo fileInfo = new FileInfo(fileName);
+                    long imageFileLength = fileInfo.Length;
+                    FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+                    BinaryReader br = new BinaryReader(fs);
+                    imageData = br.ReadBytes((int)imageFileLength);
+
+                    return File(imageData, "image/png");
+
+                }
+                // to get the user details to load user Image
+                var db = HttpContext.GetOwinContext().Get<ApplicationDbContext>();
+                var user = db.Users.Where(x => x.Id == userId).FirstOrDefault();
+                var contractor = db.Contractors.Where(c => c.ApplicationUserId == user.Id).FirstOrDefault();
+
+                return new FileContentResult(contractor.ProfilePhoto, "image/jpeg");
+            }
+            else
+            {
+                string fileName = HttpContext.Server.MapPath(@"~/Images/noImg.png");
+
+                byte[] imageData = null;
+                FileInfo fileInfo = new FileInfo(fileName);
+                long imageFileLength = fileInfo.Length;
+                FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+                BinaryReader br = new BinaryReader(fs);
+                imageData = br.ReadBytes((int)imageFileLength);
+                return File(imageData, "image/png");
+
+            }
         }
     }
 }

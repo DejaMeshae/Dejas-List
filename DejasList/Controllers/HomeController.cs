@@ -10,6 +10,14 @@ namespace DejasList.Controllers
     {
         public ActionResult Index()
         {
+            if (!User.IsInRole("Client"))
+            {
+                return RedirectToAction("Index", "Client");
+            }
+            else if (!User.IsInRole("Contractor"))
+            {
+                return RedirectToAction("Index","Contractors");
+            }
             return View();
         }
 

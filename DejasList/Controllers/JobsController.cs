@@ -18,15 +18,15 @@ namespace DejasList.Controllers
         // GET: Jobs
         public ActionResult Index()
         {
-            if (!User.IsInRole("Client"))
-            {
+            //if (!User.IsInRole("Client"))
+            //{
                
-                return RedirectToAction("ClientJobList");
-            }
-            else if (!User.IsInRole("Contractor"))
-            {
-                return RedirectToAction("ContractorJobList");
-            }
+            //    return RedirectToAction("ClientJobList");
+            //}
+            //else if (!User.IsInRole("Contractor"))
+            //{
+            //    return RedirectToAction("ContractorJobList");
+            //}
             return View();
         }
 
@@ -68,13 +68,23 @@ namespace DejasList.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Jobs jobs = db.Jobs.Find(id);
+            Jobs jobs = db.Jobs.Where(j => j.JobsId == id).Include(m => m.Messages).FirstOrDefault();
             if (jobs == null)
             {
                 return HttpNotFound();
             }
             return View(jobs);
         }
+
+        // GET: Jobs/Create
+        public ActionResult Message()
+        {
+            ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "FirstName");
+            ViewBag.ContractorId = new SelectList(db.Contractors, "ContractorId", "FirstName");
+            return View();
+        }
+
+
 
         // GET: Jobs/Create
         public ActionResult Create()
@@ -89,7 +99,7 @@ namespace DejasList.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "JobsId,TypeOfProject,SizeOfProject,Budget,Summary")] Jobs jobs)
+        public ActionResult Create([Bind(Include = "JobsId,TypeOfProject,SizeOfProject,Budget,Summary,Name")] Jobs jobs)
         {
             if (ModelState.IsValid)
             {
@@ -135,11 +145,12 @@ namespace DejasList.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "JobsId,TypeOfProject,SizeOfProject,Budget,Summary,ClientId")] Jobs jobs)
+        public ActionResult Edit([Bind(Include = "JobsId,TypeOfProject,SizeOfProject,Budget,Summary,ClientId,Name,Lat,Lng")] Jobs jobs)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(jobs).State = EntityState.Modified;
+
                 db.SaveChanges();
                 return RedirectToAction("Index", "Client");
             }

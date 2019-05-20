@@ -7,13 +7,13 @@ namespace DejasList.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class addedAboutMepropertytoclient : IMigrationMetadata
+    public sealed partial class message : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(addedAboutMepropertytoclient));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(message));
         
         string IMigrationMetadata.Id
         {
-            get { return "201905182055286_added AboutMe property to client"; }
+            get { return "201905200252231_message"; }
         }
         
         string IMigrationMetadata.Source

@@ -21,9 +21,14 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+                    <li>
+                        <img src="@Url.Action("UserPhotos", "Client" )" height="48" width="48" />
+
+                    </li>
                     <li>@Html.ActionLink("Home", "Index", "Client")</li>
                     <li>@Html.ActionLink("My Jobs", "Index", "Client")</li>
                     <li>@Html.ActionLink("My Profile", "Edit", "Client")</li>
+                    <li>@Html.ActionLink("List of Contractors", "ContractorList", "Client")</li>
 
                 </ul>
                 @Html.Partial("_LoginPartial")

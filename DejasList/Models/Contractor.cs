@@ -39,6 +39,9 @@ namespace DejasList.Models
 
         [DataType(DataType.MultilineText)]
         public string AboutMe { get; set; }
+        
+        [Display(Name = "Profile Photo")]
+        public byte[] ProfilePhoto { get; set; }
 
         [ForeignKey("ApplicationUser")]
         public string ApplicationUserId { get; set; }
