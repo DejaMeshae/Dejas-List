@@ -198,6 +198,16 @@ namespace DejasList.Controllers
         }
 
 
+
+        public ActionResult SendMail(int? id)
+        {
+            var emails = DependencyResolver.Current.GetService<EmailsController>();
+            emails.ControllerContext = new ControllerContext(this.Request.RequestContext, emails);
+            return RedirectToAction("Create", "EmailsController");
+
+        }
+
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

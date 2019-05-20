@@ -37,5 +37,9 @@ namespace DejasList.Models
         public string ApplicationUserId { get; set; }
 
         public ApplicationUser ApplicationUser { get; set; }
+
+        [ForeignKey("Emails")]
+        public int EmailId { get; set; }
+        public Emails Emails { get; set; }
     }
 }

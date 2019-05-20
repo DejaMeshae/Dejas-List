@@ -23,6 +23,7 @@ namespace DejasList.Models
         public DbSet<Client> Clients { get; set; }
         public DbSet<Jobs> Jobs { get; set; }
         public DbSet<Contractor> Contractors { get; set; }
+        public DbSet<Emails> Emails { get;set; }
 
 
         public ApplicationDbContext()

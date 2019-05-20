@@ -79,7 +79,7 @@ namespace DejasList.Controllers
         // GET: Jobs/Create
         public ActionResult Create()
         {
-            ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "FirstName");
+            ViewBag.ClientId = new SelectList(db.Emails, "ClientId", "FirstName");
             ViewBag.ContractorId = new SelectList(db.Contractors, "ContractorId", "FirstName");
             return View();
         }
@@ -94,10 +94,10 @@ namespace DejasList.Controllers
             if (ModelState.IsValid)
             {
                 var id = User.Identity.GetUserId();
-                var job = db.Clients.Where(k => k.ApplicationUserId == id).Select(s => s.ClientId).FirstOrDefault();
+                var job = db.Emails.Where(k => k.ApplicationUserId == id).Select(s => s.ClientId).FirstOrDefault();
                 jobs.ClientId = job;
-                var lat = db.Clients.Where(c => c.ClientId == jobs.ClientId).Select(f => f.Lat).FirstOrDefault();
-                var lng = db.Clients.Where(c => c.ClientId == jobs.ClientId).Select(f => f.Lng).FirstOrDefault();
+                var lat = db.Emails.Where(c => c.ClientId == jobs.ClientId).Select(f => f.Lat).FirstOrDefault();
+                var lng = db.Emails.Where(c => c.ClientId == jobs.ClientId).Select(f => f.Lng).FirstOrDefault();
                 jobs.Lat = lat;
                 jobs.Lng = lng;
                 //db.Jobs.Add(job);
@@ -108,7 +108,7 @@ namespace DejasList.Controllers
                 return RedirectToAction("Index", "Client", model);
             }
 
-            ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "FirstName", jobs.ClientId);
+            ViewBag.ClientId = new SelectList(db.Emails, "ClientId", "FirstName", jobs.ClientId);
             ViewBag.ContractorId = new SelectList(db.Contractors, "ContractorId", "FirstName", jobs.ContractorId);
             return View(jobs);
         }
@@ -125,7 +125,7 @@ namespace DejasList.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "FirstName", jobs.ClientId);
+            ViewBag.ClientId = new SelectList(db.Emails, "ClientId", "FirstName", jobs.ClientId);
             ViewBag.ContractorId = new SelectList(db.Contractors, "ContractorId", "FirstName", jobs.ContractorId);
             return View(jobs);
         }
@@ -143,7 +143,7 @@ namespace DejasList.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "FirstName", jobs.ClientId);
+            ViewBag.ClientId = new SelectList(db.Emails, "ClientId", "FirstName", jobs.ClientId);
             ViewBag.ContractorId = new SelectList(db.Contractors, "ContractorId", "FirstName", jobs.ContractorId);
             return View(jobs);
         }

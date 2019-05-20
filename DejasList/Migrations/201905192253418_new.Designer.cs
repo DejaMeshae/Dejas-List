@@ -13,7 +13,7 @@ namespace DejasList.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201905181852399_new"; }
+            get { return "201905192253418_new"; }
         }
         
         string IMigrationMetadata.Source
