@@ -43,6 +43,9 @@ namespace DejasList.Models
         [Display(Name = "Profile Photo")]
         public byte[] ProfilePhoto { get; set; }
 
+        [Display(Name ="Upload File")]
+        public HttpPostedFile ImageFile { get; set; }
+
         [ForeignKey("ApplicationUser")]
         public string ApplicationUserId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
