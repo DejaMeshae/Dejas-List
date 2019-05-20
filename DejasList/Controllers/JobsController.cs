@@ -94,10 +94,10 @@ namespace DejasList.Controllers
             if (ModelState.IsValid)
             {
                 var id = User.Identity.GetUserId();
-                var job = db.Emails.Where(k => k.ApplicationUserId == id).Select(s => s.ClientId).FirstOrDefault();
+                var job = db.Clients.Where(k => k.ApplicationUserId == id).Select(s => s.ClientId).FirstOrDefault();
                 jobs.ClientId = job;
-                var lat = db.Emails.Where(c => c.ClientId == jobs.ClientId).Select(f => f.Lat).FirstOrDefault();
-                var lng = db.Emails.Where(c => c.ClientId == jobs.ClientId).Select(f => f.Lng).FirstOrDefault();
+                var lat = db.Clients.Where(c => c.ClientId == jobs.ClientId).Select(f => f.Lat).FirstOrDefault();
+                var lng = db.Clients.Where(c => c.ClientId == jobs.ClientId).Select(f => f.Lng).FirstOrDefault();
                 jobs.Lat = lat;
                 jobs.Lng = lng;
                 //db.Jobs.Add(job);
@@ -173,6 +173,17 @@ namespace DejasList.Controllers
             db.SaveChanges();
             return RedirectToAction("Index", "Client");
         }
+
+
+
+        public ActionResult SendMail(int? id)
+        {
+            var emails = DependencyResolver.Current.GetService<EmailsController>();
+            emails.ControllerContext = new ControllerContext(this.Request.RequestContext, emails);
+            return RedirectToAction("Create", "EmailsController");
+
+        }
+
 
         protected override void Dispose(bool disposing)
         {

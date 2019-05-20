@@ -7,13 +7,13 @@ namespace DejasList.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class _new : IMigrationMetadata
+    public sealed partial class newer : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(_new));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(newer));
         
         string IMigrationMetadata.Id
         {
-            get { return "201905192253418_new"; }
+            get { return "201905201240525_newer"; }
         }
         
         string IMigrationMetadata.Source

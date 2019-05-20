@@ -48,5 +48,11 @@ namespace DejasList.Models
             public Contractor Contractor { get; set; }
         }
 
+        //[ForeignKey("Emails")]
+        //public int EmailId { get; set; }
+        //public Emails Emails { get; set; }
+
+
+
     }
 }
