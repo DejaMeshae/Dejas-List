@@ -54,6 +54,21 @@ namespace DejasList.Controllers
             {
                 var id= User.Identity.GetUserId();
                 emails.From = db.Users.Where(d => d.Id == id).Select(s => s.Email).FirstOrDefault();
+                if (!User.IsInRole("Client"))
+                {
+                    var job = db.Jobs.Where(k => k.Client.ApplicationUserId == id).Select(v => v.JobsId).FirstOrDefault();
+                    var conId = db.Jobs.Where(i => i.JobsId == job).Select(n => n.ContractorId).FirstOrDefault();
+                    var to = db.Contractors.Where(l => l.ContractorId == conId).Select(x => x.ApplicationUser.Email).FirstOrDefault();
+                    emails.To = to;
+                 
+                }
+                else if (!User.IsInRole("Contractor"))
+                {
+                    var job = db.Jobs.Where(k => k.Client.ApplicationUserId == id).Select(v => v.JobsId).FirstOrDefault();
+                    var cliId = db.Jobs.Where(i => i.JobsId == job).Select(n => n.ClientId).FirstOrDefault();
+                    var to = db.Clients.Where(l => l.ClientId == cliId).Select(x => x.ApplicationUser.Email).FirstOrDefault();
+                    emails.To = to;
+                }
                 emails.Subject = "You have a message from Deja's List.";
                 db.Emails.Add(emails);
                 db.SaveChanges();
